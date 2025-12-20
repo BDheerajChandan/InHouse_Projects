@@ -1,0 +1,204 @@
+<!-- description-form.component.html - UPDATED: Removed arrow field -->
+
+<div class="form-container">
+  <h2>📝 Event Description</h2>
+  
+  <form [formGroup]="descriptionForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Venue Field -->
+    <div class="form-group">
+      <label for="venue">
+        <span class="icon">📍</span>
+        Venue *
+      </label>
+      <input 
+        type="text" 
+        id="venue"
+        formControlName="venue"
+        placeholder="Enter venue name (e.g., Grand Ballroom)"
+        [class.invalid]="f['venue'].invalid && f['venue'].touched"
+      >
+      <div class="error-message" *ngIf="f['venue'].invalid && f['venue'].touched">
+        <span *ngIf="f['venue'].errors?.['required']">Venue is required</span>
+        <span *ngIf="f['venue'].errors?.['minlength']">Venue must be at least 3 characters</span>
+      </div>
+    </div>
+
+    <!-- Location Address Field -->
+    <div class="form-group">
+      <label for="location_address">
+        <span class="icon">🏠</span>
+        Location Address (Optional)
+      </label>
+      <textarea 
+        id="location_address"
+        formControlName="location_address"
+        rows="3"
+        placeholder="Enter full address (e.g., 123 Main Street, Mumbai, Maharashtra 400001)"
+        class="address-textarea"
+      ></textarea>
+      <small class="field-hint">
+        💡 This is the physical address that will be displayed on the card
+      </small>
+    </div>
+
+    <!-- Google Maps URL Field -->
+    <div class="form-group">
+      <label for="location_maps_url">
+        <span class="icon">🗺️</span>
+        Google Maps Link (Optional)
+      </label>
+      <input 
+        type="url" 
+        id="location_maps_url"
+        formControlName="location_maps_url"
+        placeholder="Paste Google Maps link (e.g., https://maps.google.com/...)"
+        class="wide-input"
+      >
+      <small class="field-hint">
+        💡 How to get link: Open Google Maps → Search location → Click "Share" → Copy link
+        <br>
+        <strong>This link will be clickable in the downloaded PDF!</strong>
+      </small>
+    </div>
+
+    <!-- Date and Time Field -->
+    <div class="form-group">
+      <label for="dateTime">
+        <span class="icon">📅</span>
+        Date and Time *
+      </label>
+      <input 
+        type="datetime-local" 
+        id="dateTime"
+        formControlName="date_and_time"
+        [class.invalid]="f['date_and_time'].invalid && f['date_and_time'].touched"
+      >
+      <div class="error-message" *ngIf="f['date_and_time'].invalid && f['date_and_time'].touched">
+        Date and time is required
+      </div>
+    </div>
+
+    <!-- Summary Field -->
+    <div class="form-group">
+      <label for="summary">
+        <span class="icon">✍️</span>
+        Summary *
+      </label>
+      <textarea 
+        id="summary"
+        formControlName="summary"
+        rows="5"
+        placeholder="Enter event summary..."
+        [class.invalid]="f['summary'].invalid && f['summary'].touched"
+      ></textarea>
+      <div class="error-message" *ngIf="f['summary'].invalid && f['summary'].touched">
+        <span *ngIf="f['summary'].errors?.['required']">Summary is required</span>
+        <span *ngIf="f['summary'].errors?.['minlength']">Summary must be at least 10 characters</span>
+      </div>
+      <div class="char-count">
+        {{ f['summary'].value?.length || 0 }} characters
+      </div>
+    </div>
+
+    <!-- Gap Box Message Field -->
+    <div class="form-group">
+      <label for="message">
+        <span class="icon">💬</span>
+        Gap Box Message (Optional)
+      </label>
+      <textarea 
+        id="message"
+        formControlName="message"
+        rows="3"
+        placeholder="Enter message to display between photos (optional)..."
+      ></textarea>
+      <small class="field-hint">
+        This message will appear in a box between the two photos. Leave empty to hide the box.
+      </small>
+      <div class="char-count">
+        {{ f['message'].value?.length || 0 }} characters
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        [disabled]="submitting || descriptionForm.invalid"
+      >
+        {{ submitting ? 'Submitting...' : 'Submit Description' }}
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        (click)="resetForm()"
+        [disabled]="submitting"
+      >
+        Reset
+      </button>
+    </div>
+
+  </form>
+
+  <!-- Success Message -->
+  <div class="alert alert-success" *ngIf="submitSuccess">
+    ✅ Description submitted successfully!
+  </div>
+
+  <!-- Error Message -->
+  <div class="alert alert-error" *ngIf="errorMessage">
+    ❌ {{ errorMessage }}
+  </div>
+
+  <!-- Submitted Data Display -->
+  <div class="submitted-info" *ngIf="submittedData">
+    <h3>Submitted Information:</h3>
+    <div class="info-card">
+      <div class="info-row">
+        <strong>Venue:</strong>
+        <span>{{ submittedData.venue }}</span>
+      </div>
+      <div class="info-row" *ngIf="submittedData.location_address">
+        <strong>Address:</strong>
+        <p>{{ submittedData.location_address }}</p>
+      </div>
+      <div class="info-row" *ngIf="submittedData.location_maps_url">
+        <strong>Google Maps Link:</strong>
+        <span>
+          <a [href]="submittedData.location_maps_url" target="_blank" class="preview-link">
+            🗺️ View on Maps
+          </a>
+        </span>
+      </div>
+      <div class="info-row">
+        <strong>Date & Time:</strong>
+        <span>{{ submittedData.date_and_time | date:'medium' }}</span>
+      </div>
+      <div class="info-row">
+        <strong>Summary:</strong>
+        <p>{{ submittedData.summary }}</p>
+      </div>
+      <div class="info-row" *ngIf="submittedData.message">
+        <strong>Gap Box Message:</strong>
+        <p>{{ submittedData.message }}</p>
+      </div>
+      <div class="info-row">
+        <strong>Created At:</strong>
+        <span>{{ submittedData.created_at | date:'short' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+    <button class="btn btn-prev" (click)="onPrevious()" *ngIf="showPrevious">
+      ⬅️ Previous
+    </button>
+    <button class="btn btn-next" (click)="onNext()" *ngIf="submitSuccess && submittedData">
+      View Complete Card Preview 🎉
+    </button>
+  </div>
+
+</div>

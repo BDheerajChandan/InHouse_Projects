@@ -1,0 +1,103 @@
+<!-- video-upload.component.html -->
+
+<div class="upload-container">
+  <h2>🎬 Upload Background Video</h2>
+
+  <div class="upload-area">
+    <input
+      type="file"
+      id="videoInput"
+      (change)="onFileSelect($event)"
+      accept="video/*"
+      #fileInput
+    />
+    <label for="videoInput" class="file-label">
+      <span class="upload-icon">🎥</span>
+      <span>Choose Video File</span>
+      <small>Supported: MP4, WEBM, MOV</small>
+    </label>
+  </div>
+
+  <!-- Video Preview -->
+  <div class="preview-container" *ngIf="videoUrl">
+    <h3>Preview:</h3>
+    <div class="video-wrapper">
+      <video controls [src]="videoUrl"></video>
+      <p *ngIf="selectedFile">
+        <strong>{{ selectedFile.name }}</strong
+        ><br />
+        Size: {{ (selectedFile.size / 1024 / 1024).toFixed(2) }} MB
+      </p>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="button-group" *ngIf="selectedFile">
+    <button
+      class="btn btn-primary"
+      (click)="uploadVideo()"
+      [disabled]="uploading"
+    >
+      {{ uploading ? "Uploading..." : "Upload Video" }}
+    </button>
+    <button
+      class="btn btn-secondary"
+      (click)="clearSelection()"
+      [disabled]="uploading"
+    >
+      Clear
+    </button>
+  </div>
+
+  <!-- Success Message -->
+  <div class="alert alert-success" *ngIf="uploadSuccess">
+    ✅ Background video uploaded successfully!
+  </div>
+
+  <!-- Error Message -->
+  <div class="alert alert-error" *ngIf="errorMessage">
+    ❌ {{ errorMessage }}
+  </div>
+
+  <!-- Uploaded File Info -->
+  <div class="uploaded-info" *ngIf="uploadedFile">
+    <h3>Uploaded File:</h3>
+    <div class="file-details">
+      <p><strong>Original Name:</strong> {{ uploadedFile.original_name }}</p>
+      <p>
+        <strong>Size:</strong>
+        {{ (uploadedFile.size / 1024 / 1024).toFixed(2) }} MB
+      </p>
+      <p>
+        <strong>Uploaded At:</strong>
+        {{ uploadedFile.uploaded_at | date : "short" }}
+      </p>
+      <div class="play-uploaded">
+        <video
+          controls
+          [src]="'http://127.0.0.1:8000' + uploadedFile.url"
+        ></video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Button -->
+  <!-- <div class="next-button-container" *ngIf="uploadSuccess && uploadedFile">
+    <button class="btn btn-next" (click)="onNext()">
+      Next: Add Description ➡️
+    </button>
+  </div> -->
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+    <button class="btn btn-prev" (click)="onPrevious()" *ngIf="showPrevious">
+      ⬅️ Previous
+    </button>
+    <button
+      class="btn btn-next"
+      (click)="onNext()"
+      *ngIf="uploadSuccess && uploadedFile"
+    >
+      Next: Add Description ➡️
+    </button>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<!-- music-upload.component.html -->
+
+<div class="upload-container">
+  <h2>🎵 Upload Background Music</h2>
+
+  <div class="upload-area">
+    <input
+      type="file"
+      id="musicInput"
+      (change)="onFileSelect($event)"
+      accept="audio/*"
+      #fileInput
+    />
+    <label for="musicInput" class="file-label">
+      <span class="upload-icon">🎼</span>
+      <span>Choose Music File</span>
+      <small>Supported: MP3, WAV, OGG</small>
+    </label>
+  </div>
+
+  <!-- Audio Preview -->
+  <div class="preview-container" *ngIf="audioUrl">
+    <h3>Preview:</h3>
+    <div class="audio-wrapper">
+      <audio controls [src]="audioUrl"></audio>
+      <p *ngIf="selectedFile">
+        <strong>{{ selectedFile.name }}</strong
+        ><br />
+        Size: {{ (selectedFile.size / 1024 / 1024).toFixed(2) }} MB
+      </p>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="button-group" *ngIf="selectedFile">
+    <button
+      class="btn btn-primary"
+      (click)="uploadMusic()"
+      [disabled]="uploading"
+    >
+      {{ uploading ? "Uploading..." : "Upload Music" }}
+    </button>
+    <button
+      class="btn btn-secondary"
+      (click)="clearSelection()"
+      [disabled]="uploading"
+    >
+      Clear
+    </button>
+  </div>
+
+  <!-- Success Message -->
+  <div class="alert alert-success" *ngIf="uploadSuccess">
+    ✅ Background music uploaded successfully!
+  </div>
+
+  <!-- Error Message -->
+  <div class="alert alert-error" *ngIf="errorMessage">
+    ❌ {{ errorMessage }}
+  </div>
+
+  <!-- Uploaded File Info -->
+  <div class="uploaded-info" *ngIf="uploadedFile">
+    <h3>Uploaded File:</h3>
+    <div class="file-details">
+      <p><strong>Original Name:</strong> {{ uploadedFile.original_name }}</p>
+      <p>
+        <strong>Size:</strong>
+        {{ (uploadedFile.size / 1024 / 1024).toFixed(2) }} MB
+      </p>
+      <p>
+        <strong>Uploaded At:</strong>
+        {{ uploadedFile.uploaded_at | date : "short" }}
+      </p>
+      <div class="play-uploaded">
+        <audio
+          controls
+          [src]="'http://127.0.0.1:8000' + uploadedFile.url"
+        ></audio>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Button -->
+  <!-- <div class="next-button-container" *ngIf="uploadSuccess && uploadedFile">
+    <button class="btn btn-next" (click)="onNext()">Next: Add Video ➡️</button>
+  </div> -->
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+    <button class="btn btn-prev" (click)="onPrevious()" *ngIf="showPrevious">
+      ⬅️ Previous
+    </button>
+    <button
+      class="btn btn-next"
+      (click)="onNext()"
+      *ngIf="uploadSuccess && uploadedFile"
+    >
+      Next: Add Video ➡️
+    </button>
+  </div>
+</div>

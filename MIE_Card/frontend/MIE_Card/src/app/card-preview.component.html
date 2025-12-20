@@ -1,0 +1,243 @@
+<!-- card-preview.component.html - UPDATED: Hidden arrow direction -->
+
+<div class="preview-container">
+  
+  <!-- No Data Message -->
+  <div class="no-data" *ngIf="!hasData">
+    <div class="no-data-icon">📭</div>
+    <h2>No Card Data Available</h2>
+    <p>Please upload photos, background, music, video, or add description first.</p>
+    <p class="hint">Use the tabs above to add content to your invitation card.</p>
+  </div>
+
+  <!-- Marriage Invitation Card -->
+  <div class="invitation-card print-section" *ngIf="hasData" #cardContainer>
+    
+    <!-- Background Video (if provided) -->
+    <video 
+      *ngIf="cardData.video" 
+      class="background-video"
+      autoplay 
+      loop 
+      muted
+      [src]="'http://127.0.0.1:8000' + cardData.video"
+    ></video>
+
+    <!-- Card Content -->
+    <div class="card-content">
+      
+      <!-- Header -->
+      <div class="card-header">
+        <div class="decorative-line"></div>
+        <h1 class="card-title">You Are Invited</h1>
+        <div class="decorative-line"></div>
+      </div>
+
+      <!-- Photo Layout: Photo 1, Gap Box, Photo 2 -->
+      <div class="new-layout">
+        
+        <!-- Photo 1 - Use base64 if available -->
+        <div class="photo-item" *ngIf="cardData.photos?.length > 0 && cardData.photos[0]">
+          <div class="photo-frame">
+            <img 
+              [src]="cardData.photosBase64?.[0] || ('http://127.0.0.1:8000' + cardData.photos[0])" 
+              alt="Photo 1"
+              class="photo-img"
+              crossorigin="anonymous"
+            >
+          </div>
+        </div>
+
+        <!-- Gap Box with Message OR Empty Gap -->
+        <div class="gap-box" 
+             [class.empty-gap]="!cardData.description?.message || !cardData.description.message.trim()">
+          <div class="message-content" 
+               *ngIf="cardData.description?.message && cardData.description.message.trim()">
+            {{ cardData.description.message }}
+          </div>
+        </div>
+
+        <!-- Photo 2 - Use base64 if available -->
+        <div class="photo-item" *ngIf="cardData.photos?.length > 1 && cardData.photos[1]">
+          <div class="photo-frame">
+            <img 
+              [src]="cardData.photosBase64?.[1] || ('http://127.0.0.1:8000' + cardData.photos[1])" 
+              alt="Photo 2"
+              class="photo-img"
+              crossorigin="anonymous"
+            >
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Description Section with Background Image -->
+      <div class="description-section-new" *ngIf="cardData.description">
+        
+        <!-- Background Image -->
+        <div class="description-bg-full" 
+             *ngIf="cardData.background"
+             [style.background-image]="'url(http://127.0.0.1:8000' + cardData.background + ')'">
+        </div>
+        
+        <div class="description-content-new">
+          
+          <!-- Venue -->
+          <div class="info-block-new" *ngIf="cardData.description.venue">
+            <div class="icon">📍</div>
+            <div class="info-content">
+              <h3>Venue</h3>
+              <p>{{ cardData.description.venue }}</p>
+            </div>
+          </div>
+
+          <!-- Location Address -->
+          <div class="info-block-new" *ngIf="cardData.description.location_address">
+            <div class="icon">🏠</div>
+            <div class="info-content">
+              <h3>Address</h3>
+              <p class="address-text">{{ cardData.description.location_address }}</p>
+            </div>
+          </div>
+
+          <!-- Google Maps Link (Clickable in PDF) -->
+          <div class="info-block-new" *ngIf="cardData.description.location_maps_url">
+            <div class="icon">🗺️</div>
+            <div class="info-content">
+              <h3>Location</h3>
+              <p>
+                <a [href]="cardData.description.location_maps_url" 
+                   target="_blank" 
+                   class="location-link clickable-pdf-link">
+                  📍 Click here to view on Google Maps
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Date & Time -->
+          <div class="info-block-new" *ngIf="cardData.description.date_and_time">
+            <div class="icon">📅</div>
+            <div class="info-content">
+              <h3>Date & Time</h3>
+              <p>{{ formatDate(cardData.description.date_and_time) }}</p>
+            </div>
+          </div>
+
+          <!-- Summary -->
+          <div class="info-block-new" *ngIf="cardData.description.summary">
+            <div class="icon">💐</div>
+            <div class="info-content">
+              <h3>Summary</h3>
+              <p class="summary-text">{{ cardData.description.summary }}</p>
+            </div>
+          </div>
+
+          <!-- Arrow Direction Display - HIDDEN FOR NOW -->
+          <!-- <div class="arrow-indicator-new" *ngIf="cardData.description.arrow_direction">
+            <p class="arrow-label">Direction to Venue:</p>
+            <div class="arrow-display">
+              <span class="arrow-icon" [ngClass]="'arrow-' + cardData.description.arrow_direction">
+                <ng-container [ngSwitch]="cardData.description.arrow_direction">
+                  <span *ngSwitchCase="'left'">⬅️</span>
+                  <span *ngSwitchCase="'right'">➡️</span>
+                  <span *ngSwitchCase="'up'">⬆️</span>
+                  <span *ngSwitchCase="'down'">⬇️</span>
+                  <span *ngSwitchDefault>➡️</span>
+                </ng-container>
+              </span>
+              <span class="arrow-text">
+                {{ cardData.description.arrow_direction | titlecase }}
+              </span>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+
+      <!-- Music Player (Hidden) -->
+      <audio 
+        id="cardAudio"
+        loop
+        autoplay
+        [src]="'http://127.0.0.1:8000' + cardData.music"
+        *ngIf="cardData.music"
+        style="display: none;"
+      ></audio>
+
+      <!-- Footer -->
+      <div class="card-footer">
+        <div class="decorative-divider">
+          <span>❀</span>
+          <span>❀</span>
+          <span>❀</span>
+        </div>
+        <p class="footer-text">We look forward to celebrating with you!</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons no-print" *ngIf="hasData">
+    <button class="action-btn share-btn" (click)="shareCard()">
+      📤 Share Card
+    </button>
+    <button class="action-btn download-btn" (click)="downloadAsPDF()" [disabled]="isGeneratingPDF">
+      {{ isGeneratingPDF ? '⏳ Generating PDF...' : '📥 Download as PDF' }}
+    </button>
+  </div>
+
+  <!-- PDF Generation Progress -->
+  <div class="recording-progress no-print" *ngIf="isGeneratingPDF">
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="pdfProgress"></div>
+    </div>
+    <p class="progress-text">
+      📄 Generating PDF with all images... {{ pdfProgress.toFixed(0) }}%
+      <br>
+      <small>Converting images to base64 for PDF compatibility...</small>
+    </p>
+  </div>
+
+  <!-- Data Summary -->
+  <div class="data-summary no-print" *ngIf="hasData">
+    <h3>Card Elements Included:</h3>
+    <div class="summary-grid">
+      <div class="summary-item" [class.included]="cardData.photos?.length > 0">
+        <span class="check-icon">{{ cardData.photos?.length > 0 ? '✅' : '⬜' }}</span>
+        <span>Photos ({{ cardData.photos?.length || 0 }})</span>
+      </div>
+      <div class="summary-item" [class.included]="cardData.background">
+        <span class="check-icon">{{ cardData.background ? '✅' : '⬜' }}</span>
+        <span>Background Image</span>
+      </div>
+      <div class="summary-item" [class.included]="cardData.music">
+        <span class="check-icon">{{ cardData.music ? '✅' : '⬜' }}</span>
+        <span>Background Music</span>
+      </div>
+      <div class="summary-item" [class.included]="cardData.video">
+        <span class="check-icon">{{ cardData.video ? '✅' : '⬜' }}</span>
+        <span>Background Video</span>
+      </div>
+      <div class="summary-item" [class.included]="cardData.description">
+        <span class="check-icon">{{ cardData.description ? '✅' : '⬜' }}</span>
+        <span>Event Details</span>
+      </div>
+      <div class="summary-item" [class.included]="cardData.description?.message">
+        <span class="check-icon">{{ cardData.description?.message ? '✅' : '⬜' }}</span>
+        <span>Gap Box Message</span>
+      </div>
+      <div class="summary-item" [class.included]="cardData.description?.location_address">
+        <span class="check-icon">{{ cardData.description?.location_address ? '✅' : '⬜' }}</span>
+        <span>Physical Address</span>
+      </div>
+      <div class="summary-item" [class.included]="cardData.description?.location_maps_url">
+        <span class="check-icon">{{ cardData.description?.location_maps_url ? '✅' : '⬜' }}</span>
+        <span>Google Maps Link (Clickable in PDF)</span>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,82 @@
+<!-- photo-upload.component.html - UPDATED with navigation buttons -->
+
+<div class="upload-container">
+  <h2>📸 Upload Photos (2 Required)</h2>
+  
+  <div class="upload-area">
+    <input 
+      type="file" 
+      id="photoInput"
+      (change)="onFileSelect($event)"
+      accept="image/*"
+      multiple
+      #fileInput
+    >
+    <label for="photoInput" class="file-label">
+      <span class="upload-icon">📁</span>
+      <span>Choose 2 Photos</span>
+    </label>
+  </div>
+
+  <!-- Preview Area -->
+  <div class="preview-container" *ngIf="previewUrls.length > 0">
+    <h3>Preview:</h3>
+    <div class="preview-grid">
+      <div class="preview-item" *ngFor="let url of previewUrls; let i = index">
+        <img [src]="url" [alt]="'Photo ' + (i + 1)">
+        <p>Photo {{ i + 1 }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="button-group" *ngIf="selectedFiles.length > 0">
+    <button 
+      class="btn btn-primary" 
+      (click)="uploadPhotos()"
+      [disabled]="uploading || selectedFiles.length !== 2"
+    >
+      {{ uploading ? 'Uploading...' : 'Upload Photos' }}
+    </button>
+    <button 
+      class="btn btn-secondary" 
+      (click)="clearSelection()"
+      [disabled]="uploading"
+    >
+      Clear
+    </button>
+  </div>
+
+  <!-- Success Message -->
+  <div class="alert alert-success" *ngIf="uploadSuccess">
+    ✅ Photos uploaded successfully!
+  </div>
+
+  <!-- Error Message -->
+  <div class="alert alert-error" *ngIf="errorMessage">
+    ❌ {{ errorMessage }}
+  </div>
+
+  <!-- Uploaded Files Info -->
+  <div class="uploaded-info" *ngIf="uploadedFiles.length > 0">
+    <h3>Uploaded Files:</h3>
+    <div class="file-list">
+      <div class="file-item" *ngFor="let file of uploadedFiles">
+        <p><strong>Original:</strong> {{ file.original_name }}</p>
+        <p><strong>Size:</strong> {{ (file.size / 1024).toFixed(2) }} KB</p>
+        <p><strong>URL:</strong> <a [href]="'http://127.0.0.1:8000' + file.url" target="_blank">View</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+    <button class="btn btn-prev" (click)="onPrevious()" *ngIf="showPrevious">
+      ⬅️ Previous
+    </button>
+    <button class="btn btn-next" (click)="onNext()" *ngIf="uploadSuccess && uploadedFiles.length > 0">
+      Next: Add Background ➡️
+    </button>
+  </div>
+
+</div>
