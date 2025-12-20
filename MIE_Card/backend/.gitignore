@@ -1,1 +1,4 @@
 /miec_pip
+
+__pycache__/
+*.pyc
