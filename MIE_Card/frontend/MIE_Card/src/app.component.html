@@ -1,0 +1,87 @@
+<!-- app/src/app.component.html - UPDATED with navigation props -->
+
+<div class="app-container">
+  
+  <!-- Header -->
+  <header class="app-header">
+    <h1>{{ title }}</h1>
+    <p class="subtitle">Create amazing cards with photos, videos, music, and more!</p>
+  </header>
+
+  <!-- Tab Navigation -->
+  <nav class="tab-navigation">
+    <button 
+      *ngFor="let tab of tabs"
+      [class.active]="activeTab === tab.id"
+      (click)="setActiveTab(tab.id)"
+      class="tab-button"
+    >
+      <span class="tab-icon">{{ tab.icon }}</span>
+      <span class="tab-label">{{ tab.label }}</span>
+    </button>
+  </nav>
+
+  <!-- Content Area -->
+  <main class="content-area">
+    
+    <!-- Photos Upload Component -->
+    <div *ngIf="activeTab === 'photos'" class="tab-content">
+      <app-photo-upload 
+        (nextStep)="goToNextTab()" 
+        (previousStep)="goToPreviousTab()"
+        [showPrevious]="canGoPrevious()">
+      </app-photo-upload>
+    </div>
+
+    <!-- Background Upload Component -->
+    <div *ngIf="activeTab === 'background'" class="tab-content">
+      <app-background-upload 
+        (nextStep)="goToNextTab()" 
+        (previousStep)="goToPreviousTab()"
+        [showPrevious]="canGoPrevious()">
+      </app-background-upload>
+    </div>
+
+    <!-- Music Upload Component -->
+    <div *ngIf="activeTab === 'music'" class="tab-content">
+      <app-music-upload 
+        (nextStep)="goToNextTab()" 
+        (previousStep)="goToPreviousTab()"
+        [showPrevious]="canGoPrevious()">
+      </app-music-upload>
+    </div>
+
+    <!-- Video Upload Component -->
+    <div *ngIf="activeTab === 'video'" class="tab-content">
+      <app-video-upload 
+        (nextStep)="goToNextTab()" 
+        (previousStep)="goToPreviousTab()"
+        [showPrevious]="canGoPrevious()">
+      </app-video-upload>
+    </div>
+
+    <!-- Description Form Component -->
+    <div *ngIf="activeTab === 'description'" class="tab-content">
+      <app-description-form 
+        (nextStep)="goToNextTab()" 
+        (previousStep)="goToPreviousTab()"
+        [showPrevious]="canGoPrevious()">
+      </app-description-form>
+    </div>
+
+    <!-- Card Preview Component -->
+    <div *ngIf="activeTab === 'preview'" class="tab-content">
+      <app-card-preview 
+        (previousStep)="goToPreviousTab()"
+        [showPrevious]="canGoPrevious()">
+      </app-card-preview>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>Marriage Invitation E-Card Creator © 2025 | Powered by Angular & FastAPI</p>
+  </footer>
+
+</div>
