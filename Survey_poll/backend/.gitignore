@@ -1,0 +1,6 @@
+/survey_pip
+
+__pycache__/
+*.pyc
+
+.env
