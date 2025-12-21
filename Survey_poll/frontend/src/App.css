@@ -1,0 +1,52 @@
+/* ============================================
+   FILE: src/App.css
+   App Component Specific Styles
+   ============================================ */
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Global Transitions */
+.App * {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Focus States */
+.App *:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* Disable transitions for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .App *,
+  .App *::before,
+  .App *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .App {
+    background: white !important;
+  }
+  
+  button,
+  .share-btn,
+  .delete-btn,
+  .add-question-btn,
+  .add-choice-btn,
+  .remove-question-btn,
+  .remove-choice-btn {
+    display: none !important;
+  }
+}
