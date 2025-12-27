@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+sounddevice
+numpy
+scipy
+speechrecognition
+uvicorn
+python-multipart
+pydub

@@ -1,0 +1,4 @@
+/SpeechToTxt_pip
+
+__pycache__/
+*.pyc

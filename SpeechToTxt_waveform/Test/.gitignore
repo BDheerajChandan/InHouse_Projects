@@ -1,0 +1,5 @@
+/audio_Test
+
+__pycache__/
+*.pyc
+*.wav
