@@ -4,6 +4,7 @@
 /storage_FaissDB
 
 /storage_Faiss
+./storage_Faiss
 /storage_Faiss_Claude
 *.pdf
 *.txt
