@@ -1,5 +1,0 @@
-Dheeraj is a software engineer specializing in AI, ML, and computer vision.
-He has experience with Python, LangChain, RAG pipelines, and deep learning.
-He is preparing for AI/ML interviews and works on real-world projects.
-Zentron 2021 december till 2024 febrauary.
-Currently working in CSM Technologies from july,2025 to till date at Bhubaneswar.
