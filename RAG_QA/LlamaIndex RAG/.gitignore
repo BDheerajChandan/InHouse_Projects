@@ -1,0 +1,11 @@
+.env
+/llama_pip
+/storage_InMem
+/storage_FaissDB
+/storage_Faiss_Claude
+*.pdf
+*.txt
+*.md
+*.docx
+*.html
+*.csv
