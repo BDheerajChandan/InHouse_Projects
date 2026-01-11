@@ -2,6 +2,8 @@
 /llama_pip
 /storage_InMem
 /storage_FaissDB
+
+/storage_Faiss
 /storage_Faiss_Claude
 *.pdf
 *.txt
