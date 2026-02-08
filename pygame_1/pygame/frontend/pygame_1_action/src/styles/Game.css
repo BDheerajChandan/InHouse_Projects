@@ -1,0 +1,597 @@
+/**
+ * Game Component Styles
+ * Shadow of the Endless Forest
+ */
+
+/* Prevent scrollbars and ensure full screen fit */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.game-container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  color: #fff;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.game-header h1 {
+  font-size: 1.8em;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: #FFD700;
+}
+
+/* Game Stats Bar */
+.game-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weapon-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weapon-icon {
+  color: #FFD700;
+  vertical-align: middle;
+  margin-right: 5px;
+  filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+}
+
+.stat-label {
+  font-weight: bold;
+  color: #FFD700;
+  font-size: 1em;
+}
+
+.stat-value {
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-value.weapon {
+  color: #FF6347;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Health Bar */
+.health-bar {
+  width: 150px;
+  height: 20px;
+  background: rgba(255, 0, 0, 0.3);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.health-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff0000 0%, #00ff00 100%);
+  transition: width 0.3s ease;
+  border-radius: 8px;
+}
+
+/* Game Canvas Container */
+.game-canvas-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+.game-canvas {
+  border: 4px solid #FFD700;
+  border-radius: 10px;
+  background: #1a2f1a;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  cursor: crosshair;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Game Overlays */
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+.start-screen,
+.game-over-screen {
+  text-align: center;
+  padding: 40px;
+  background: rgba(20, 40, 20, 0.95);
+  border: 3px solid #FFD700;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.start-screen h2,
+.game-over-screen h2 {
+  font-size: 2.5em;
+  margin: 0 0 20px 0;
+  color: #FFD700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.start-screen p {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.start-screen ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.start-screen li {
+  margin: 10px 0;
+  font-size: 1.1em;
+  color: #ddd;
+}
+
+/* Buttons */
+.btn-start,
+.btn-restart {
+  padding: 15px 40px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #000;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-start:hover,
+.btn-restart:hover {
+  background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.btn-start:active,
+.btn-restart:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Game Over Screen */
+.final-stats {
+  margin: 20px 0;
+}
+
+.final-stats p {
+  font-size: 1.3em;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.final-score {
+  font-size: 1.8em !important;
+  color: #FFD700 !important;
+  font-weight: bold;
+  margin-top: 20px !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Game Controls Info */
+.game-controls {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.control-info,
+.weapon-progression {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.control-info h3,
+.weapon-progression h3 {
+  margin: 0 0 8px 0;
+  color: #FFD700;
+  font-size: 1.1em;
+}
+
+.control-info p,
+.weapon-progression p {
+  margin: 5px 0;
+  font-size: 0.95em;
+  color: #ddd;
+}
+
+.control-info strong {
+  color: #FFD700;
+}
+
+.health-gain {
+  color: #00FF00 !important;
+  font-weight: bold;
+}
+
+.win-condition {
+  color: #FFD700 !important;
+  font-weight: bold;
+  font-size: 1.1em !important;
+  margin-top: 10px !important;
+}
+
+/* Game Control Buttons (Pause/Stop) */
+.game-control-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.btn-pause,
+.btn-stop {
+  padding: 8px 16px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #fff;
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-pause {
+  background: rgba(255, 215, 0, 0.3);
+}
+
+.btn-stop {
+  background: rgba(255, 0, 0, 0.3);
+  border-color: #FF6347;
+}
+
+.btn-pause:hover {
+  background: rgba(255, 215, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-stop:hover {
+  background: rgba(255, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Mobile Joystick Visualization */
+.joystick-base {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.joystick-stick {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.8);
+  border: 2px solid #FFD700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: none;
+}
+
+/* Mobile Touch Instructions */
+.mobile-instructions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.touch-instruction {
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.left-instruction {
+  bottom: 50px;
+  left: 50px;
+}
+
+.right-instruction {
+  bottom: 50px;
+  right: 50px;
+}
+
+/* Hide touch instructions on desktop */
+@media (min-width: 768px) {
+  .mobile-instructions {
+    display: none;
+  }
+}
+
+/* Remove old mobile controls styles */
+
+/* Pause Screen */
+.pause-screen {
+  text-align: center;
+  padding: 40px;
+  background: rgba(20, 40, 20, 0.95);
+  border: 3px solid #FFD700;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.pause-screen h2 {
+  font-size: 2.5em;
+  margin: 0 0 30px 0;
+  color: #FFD700;
+}
+
+.btn-resume,
+.btn-quit {
+  padding: 15px 40px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-resume {
+  background: linear-gradient(135deg, #00FF00 0%, #32CD32 100%);
+}
+
+.btn-quit {
+  background: linear-gradient(135deg, #FF6347 0%, #DC143C 100%);
+}
+
+.btn-resume:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.btn-quit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Win Screen */
+.win-screen {
+  text-align: center;
+  padding: 40px;
+  background: rgba(20, 60, 20, 0.95);
+  border: 4px solid #FFD700;
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
+  animation: victoryPulse 2s infinite;
+}
+
+@keyframes victoryPulse {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(255, 215, 0, 1);
+  }
+}
+
+.win-screen h2 {
+  font-size: 3em;
+  margin: 0 0 20px 0;
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  animation: victoryText 1s infinite;
+}
+
+@keyframes victoryText {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.victory-text {
+  font-size: 1.5em !important;
+  color: #00FF00 !important;
+  font-weight: bold;
+  margin-bottom: 20px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .game-container {
+    padding: 5px;
+  }
+  
+  .game-canvas {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .game-stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .game-header h1 {
+    font-size: 1.5em;
+  }
+  
+  .start-screen h2,
+  .game-over-screen h2 {
+    font-size: 1.8em;
+  }
+  
+  .game-controls {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-container {
+    padding: 5px;
+  }
+  
+  .game-header h1 {
+    font-size: 1.2em;
+  }
+  
+  .stat-label,
+  .stat-value {
+    font-size: 0.85em;
+  }
+  
+  .health-bar {
+    width: 80px;
+  }
+  
+  .start-screen,
+  .game-over-screen {
+    padding: 15px;
+  }
+  
+  .btn-start,
+  .btn-restart {
+    padding: 10px 25px;
+    font-size: 1em;
+  }
+  
+  .control-info h3,
+  .weapon-progression h3 {
+    font-size: 1em;
+  }
+  
+  .control-info p,
+  .weapon-progression p {
+    font-size: 0.85em;
+  }
+}
+
+@media (max-height: 700px) {
+  .game-header h1 {
+    font-size: 1.3em;
+    margin: 5px 0;
+  }
+  
+  .game-stats {
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .game-controls {
+    margin-top: 5px;
+  }
+  
+  .control-info,
+  .weapon-progression {
+    padding: 8px 12px;
+  }
+  
+  .control-info h3,
+  .weapon-progression h3 {
+    margin-bottom: 5px;
+    font-size: 1em;
+  }
+  
+  .control-info p,
+  .weapon-progression p {
+    margin: 3px 0;
+    font-size: 0.85em;
+  }
+}

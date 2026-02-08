@@ -1,0 +1,168 @@
+You are a senior game developer and Python engineer.
+
+Build an endless survival action game called "Shadow of the Endless Forest".
+
+The game rules:
+
+1. One hero (player) fights enemies inside a dark cloudy forest arena.
+2. Player starts with bare hands.
+3. Initially spawn 3 enemies.
+4. Every 5 successful hits (shots), 1 enemy dies.
+5. Every 5 seconds, 1 new enemy spawns automatically.
+6. Weapon progression:
+   - 0–9 kills → Hands
+   - 10 kills → Knife unlocked
+   - 50 kills → Big Knife / Talvaar unlocked
+7. Game is endless.
+8. Player loses when health becomes zero.
+9. Score = total kills + survival time.
+
+Requirements:
+
+Frontend:
+- Use HTML, CSS, JavaScript (or Pygame if desktop).
+- Show forest background.
+- Display:
+  - Health bar
+  - Kill counter
+  - Current weapon
+  - Timer
+- Player can move and attack.
+- Enemies move toward player.
+
+Backend (Python):
+- Handle:
+  - Enemy spawn timing
+  - Kill counting
+  - Weapon unlock logic
+  - Game state updates
+
+Deliver:
+- Folder structure
+- Full Python code
+- Frontend code
+- Comments in code
+- Simple but working version
+
+Use clean, beginner-friendly code.
+
+
+
+
+Backend Structure :
+C:\Users\b.dheeraj\Desktop\pygame>cd backend
+
+C:\Users\b.dheeraj\Desktop\pygame\backend>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+
+ Directory of C:\Users\b.dheeraj\Desktop\pygame\backend
+
+07-02-2026  08:06    <DIR>          .
+07-02-2026  08:06    <DIR>          ..
+               0 File(s)              0 bytes
+               2 Dir(s)  61,112,635,392 bytes free
+
+C:\Users\b.dheeraj\Desktop\pygame\backend>mkdir app
+
+C:\Users\b.dheeraj\Desktop\pygame\backend>code .
+
+C:\Users\b.dheeraj\Desktop\pygame\backend>tree /f
+Folder PATH listing
+Volume serial number is BE95-2700
+C:.
+│   .env
+│   requrements.txt
+│   run.py        // handles main.py by uvicorn so python run.py 
+│
+└───app
+        routers   // Handles endpoints
+        main.py   // Handles the server 
+
+
+C:\Users\b.dheeraj\Desktop\pygame\backend>
+
+
+
+Frontend structure :
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend> npm create vite@latest pygame_1_action -- --template react
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend>
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+
+ Directory of C:\Users\b.dheeraj\Desktop\pygame\frontend
+
+07-02-2026  08:09    <DIR>          .
+07-02-2026  08:09    <DIR>          ..
+07-02-2026  08:09    <DIR>          pygame_1_action
+               0 File(s)              0 bytes
+               3 Dir(s)  61,138,554,880 bytes free
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend>cd pygame_1_action
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend\pygame_1_action>
+C:\Users\b.dheeraj\Desktop\pygame\frontend\pygame_1_action>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+
+ Directory of C:\Users\b.dheeraj\Desktop\pygame\frontend\pygame_1_action
+
+07-02-2026  08:18    <DIR>          .
+07-02-2026  08:18    <DIR>          ..
+02-12-2025  08:42               253 .gitignore
+02-12-2025  08:42               758 eslint.config.js
+07-02-2026  08:09               364 index.html
+07-02-2026  08:09    <DIR>          node_modules
+07-02-2026  08:09            99,910 package-lock.json
+07-02-2026  08:09               611 package.json
+07-02-2026  08:09    <DIR>          public
+02-12-2025  08:42             1,157 README.md
+07-02-2026  08:18    <DIR>          services
+07-02-2026  08:11    <DIR>          src
+02-12-2025  08:42               161 vite.config.js
+               7 File(s)        103,214 bytes
+               6 Dir(s)  61,042,565,120 bytes free
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend\pygame_1_action>cd src
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend\pygame_1_action\src>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+
+ Directory of C:\Users\b.dheeraj\Desktop\pygame\frontend\pygame_1_action\src
+
+07-02-2026  08:11    <DIR>          .
+07-02-2026  08:11    <DIR>          ..
+02-12-2025  08:42               606 App.css
+02-12-2025  08:42               903 App.jsx
+07-02-2026  08:21    <DIR>          assets
+07-02-2026  08:10    <DIR>          components
+02-12-2025  08:42             1,154 index.css
+02-12-2025  08:42               229 main.jsx
+07-02-2026  08:11    <DIR>          styles
+               4 File(s)          2,892 bytes
+               5 Dir(s)  61,034,311,680 bytes free
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend\pygame_1_action\src>tree /f
+Folder PATH listing
+Volume serial number is BE95-2700
+C:.
+│   App.css
+│   App.jsx
+│   index.css
+│   main.jsx
+│
+├───assets
+│   │   react.svg
+│   │
+│   ├───audio
+│   └───bgimage
+├───components
+└───styles
+
+C:\Users\b.dheeraj\Desktop\pygame\frontend\pygame_1_action\src>
+
