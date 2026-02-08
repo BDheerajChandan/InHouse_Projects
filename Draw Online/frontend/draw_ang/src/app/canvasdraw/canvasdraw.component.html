@@ -1,0 +1,237 @@
+<!-- src/app/canvasdraw/canvasdraw.component.html -->
+
+<div class="container">
+  <!-- ===== Create/Join Room Modal ===== -->
+  <div class="modal-overlay" *ngIf="showCreateRoomModal">
+    <div class="modal-content">
+      <h2>{{ roomId ? "🚪 Join Room" : "🎨 Create Room" }}</h2>
+
+      <p *ngIf="roomId && creatorName">
+        Join <strong>{{ creatorName }}'s</strong> room
+      </p>
+      <p *ngIf="!roomId">Enter your name to create a drawing room</p>
+
+      <input
+        type="text"
+        [(ngModel)]="userName"
+        placeholder="Enter your name"
+        class="modal-input"
+        (keyup.enter)="roomId ? joinRoomWithName() : createRoomWithName()"
+        maxlength="20"
+        autofocus
+      />
+
+      <button
+        class="btn btn-primary btn-large"
+        (click)="roomId ? joinRoomWithName() : createRoomWithName()"
+        [disabled]="!userName.trim()"
+      >
+        {{ roomId ? "🚪 Join Room" : "🎨 Create Room" }}
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== Confirm Name Modal (after page refresh) ===== -->
+  <div class="modal-overlay" *ngIf="showConfirmNameModal">
+    <div class="modal-content">
+      <h2>👋 Welcome Back!</h2>
+      <p>
+        Is your name still <strong>{{ storedUserName }}</strong
+        >?
+      </p>
+
+      <div class="button-group">
+        <button class="btn btn-success btn-large" (click)="confirmStoredName()">
+          ✓ Yes, that's me
+        </button>
+        <button
+          class="btn btn-secondary btn-large"
+          (click)="changeStoredName()"
+        >
+          ✏️ Use different name
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <div class="header">
+    <div class="header-left">
+      <h1>🎨 Draw Online</h1>
+
+      <span class="user-badge" *ngIf="userName && isConnected">
+        <span
+          class="user-badge-color"
+          [style.background-color]="userColor"
+        ></span>
+        {{ userName }}
+        <span class="user-number" *ngIf="isCreator">(Creator)</span>
+      </span>
+    </div>
+
+    <div class="header-info">
+      <span *ngIf="isConnected" class="status connected">
+        ● Connected ({{ activeUsers }}/{{ maxUsers }})
+      </span>
+      <span *ngIf="!isConnected && !roomId" class="status">
+        Not connected
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== Error Message ===== -->
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <!-- ===== Main Content ===== -->
+  <div class="main-content">
+    <!-- ===== Sidebar (Controls) ===== -->
+    <div class="sidebar">
+      <!-- Room Section -->
+      <div class="section">
+        <h3>Room</h3>
+
+        <!-- Create Room Button -->
+        <button
+          *ngIf="!roomId"
+          class="btn btn-primary"
+          (click)="showCreateRoom()"
+        >
+          Create New Room
+        </button>
+
+        <!-- Room Info & Share -->
+        <div *ngIf="roomId" class="room-info">
+          <div class="share-section">
+            <div class="share-header">
+              <label>Share URL:</label>
+              <button class="btn btn-copy" (click)="copyShareableUrl()">
+                {{ showCopied ? "✓ Copied!" : "📋 Copy" }}
+              </button>
+            </div>
+
+            <div class="share-container">
+              <!-- <input
+                type="text"
+                [value]="shareableUrl"
+                readonly
+                class="share-input"
+              /> -->
+              <input
+                type="text"
+                [(ngModel)]="shareableUrl"
+                readonly
+                class="share-input"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Users Section -->
+      <div class="section" *ngIf="isConnected && activeUsersList.length > 0">
+        <h3>Active Users ({{ activeUsersList.length }})</h3>
+
+        <div class="users-list">
+          <div class="user-item" *ngFor="let user of activeUsersList">
+            <span
+              class="user-color-dot"
+              [style.background-color]="user.color"
+            ></span>
+            <span class="user-name">{{ user.name }}</span>
+            <span class="user-tag" *ngIf="user.name === creatorName">👑</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools Section -->
+      <div class="section" *ngIf="isConnected">
+        <h3>Tools</h3>
+
+        <div class="tool-buttons">
+          <button
+            class="btn tool-btn"
+            [class.active]="selectedTool === 'pen'"
+            (click)="selectTool('pen')"
+          >
+            ✏️ Pen
+          </button>
+          <button
+            class="btn tool-btn"
+            [class.active]="selectedTool === 'eraser'"
+            (click)="selectTool('eraser')"
+          >
+            🧹 Eraser
+          </button>
+        </div>
+
+        <div class="line-width-control">
+          <label>Line Width: {{ lineWidth }}px</label>
+          <input
+            type="range"
+            min="1"
+            max="20"
+            [(ngModel)]="lineWidth"
+            class="slider"
+          />
+        </div>
+      </div>
+
+      <!-- Actions Section -->
+      <div class="section" *ngIf="isConnected">
+        <h3>Actions</h3>
+
+        <button class="btn btn-danger" (click)="clearCanvas()">
+          🗑️ Clear Canvas
+        </button>
+        <button class="btn btn-success" (click)="downloadCanvas()">
+          💾 Download PNG
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== Canvas Area ===== -->
+    <div class="canvas-container">
+      <canvas
+        #canvas
+        (mousedown)="onMouseDown($event)"
+        (mousemove)="onMouseMove($event)"
+        (mouseup)="onMouseUp()"
+        (mouseleave)="onMouseLeave()"
+        (touchstart)="onTouchStart($event)"
+        (touchmove)="onTouchMove($event)"
+        (touchend)="onTouchEnd()"
+        [class.drawing-cursor]="isConnected"
+      ></canvas>
+
+      <!-- Welcome Placeholder -->
+      <div *ngIf="!isConnected && !roomId" class="canvas-placeholder">
+        <div class="placeholder-content">
+          <h2>Welcome to Draw Online!</h2>
+          <p>Create a room to start drawing with others</p>
+          <button class="btn btn-primary btn-large" (click)="showCreateRoom()">
+            🎨 Create Room
+          </button>
+        </div>
+      </div>
+
+      <!-- Connecting Placeholder -->
+      <div
+        *ngIf="
+          roomId &&
+          !isConnected &&
+          !errorMessage &&
+          !showCreateRoomModal &&
+          !showConfirmNameModal
+        "
+        class="canvas-placeholder"
+      >
+        <div class="placeholder-content">
+          <h2>Connecting...</h2>
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
