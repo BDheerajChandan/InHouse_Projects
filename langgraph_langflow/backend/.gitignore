@@ -1,0 +1,4 @@
+.env
+/lang_pip
+
+*.pyc
