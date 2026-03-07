@@ -1,0 +1,341 @@
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Pacifico&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  width: 100%; height: 100%; min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Root ── */
+.app-root {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  font-family: 'Baloo 2', cursive;
+  cursor: crosshair;
+  background: #f8f8f8;
+}
+
+/* ── Background ── */
+.app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #f8f8f8;
+}
+
+/* Padded bg image — shows card breathing room */
+.app-bg.has-bg-image {
+  inset: 16px;              /* ← padding from all edges */
+  border-radius: 1.5rem;
+  background-size: cover;
+  background-position: center;
+  /* filter: brightness(0.52) saturate(1.3); */
+  box-shadow: 0 0 0 16px #f8f8f8; /* matches body bg */
+  filter: brightness(0.28) saturate(1.1);   /* ← was 0.52, now 0.28 */
+}
+
+/* ── Splatter SVG — z-index ABOVE card (z:30) so it covers everything ── */
+.splatter-svg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 30;              /* ← above card z:20 */
+  overflow: visible;
+  transition: opacity 0.6s ease;
+}
+
+.splatter-svg.clearing {
+  opacity: 0;
+}
+
+.splatter-dot {
+  opacity: 0;
+  transform-origin: center;
+  animation: dotPop 3s ease-out forwards;
+}
+
+@keyframes dotPop {
+  0%    { opacity: 0;    transform: scale(0); }
+  6%    { opacity: 1;    transform: scale(1.4); }
+  14%   { opacity: 0.95; transform: scale(1); }
+  60%   { opacity: 0.88; }
+  100%  { opacity: 0.8;  transform: scale(1); }
+}
+
+/* ── Ripple ── */
+.ripple-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 31;
+}
+.ripple {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 3px solid rgba(80, 160, 255, 0.9);
+  transform: translate(-50%, -50%) scale(0);
+  animation: rippleOut 0.9s ease-out forwards;
+}
+@keyframes rippleOut {
+  0%   { transform: translate(-50%,-50%) scale(0);  opacity: 1; }
+  100% { transform: translate(-50%,-50%) scale(16); opacity: 0; }
+}
+
+/* ── Clear wash overlay ── */
+.clear-wash {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(180,230,255,0.7) 0%, rgba(255,255,255,0.95) 100%);
+  animation: washSweep 0.7s ease forwards;
+}
+@keyframes washSweep {
+  0%   { opacity: 0; transform: scale(0.5); border-radius: 50%; }
+  50%  { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(3);   border-radius: 0; }
+}
+
+/* ── Card — z:20, splatter renders above it ── */
+.holi-card {
+  position: relative;
+  z-index: 20;
+  width: min(400px, 88vw);
+  /* background: rgba(255, 255, 255, 0.92); */
+  background: rgba(255, 255, 255, 0.45);   /* ← was 0.92, now 0.45 */
+  backdrop-filter: blur(12px);              /* ← reduced blur */
+  /* backdrop-filter: blur(24px); */
+  border: 1.5px solid rgba(0,0,0,0.07);
+  border-radius: 2rem;
+  box-shadow: 0 4px 48px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(2rem, 6vw, 3rem) clamp(1.5rem, 6vw, 2.5rem);
+  gap: 0.9rem;
+  cursor: default;
+}
+
+.pre-title {
+  font-size: clamp(1.2rem, 2.5vw, 0.92rem);
+  /* color: #999; */
+  color: #0d0672;           /* darker */
+  font-weight: 800;      /* ← bold */
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.holi-title {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(4rem, 20vw, 7rem);
+  line-height: 1;
+  display: flex;
+  gap: 0.03em;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.1));
+}
+
+.year-text {
+  font-size: clamp(1.2rem, 2.5vw, 1rem);
+  /* color: #bbb; */
+  color: #e60909;           /* darker */
+  font-weight: 800;      /* ← bold */
+  letter-spacing: 0.5em;
+  font-weight: 600;
+  margin-top: -0.4rem;
+}
+
+.wish-line {
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  color: #272727;           /* darker */
+  font-weight: 800;      /* ← bold */
+  /* color: #555; */
+  text-align: center;
+  line-height: 1.6;
+  max-width: 30ch;
+}
+
+.from-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.65rem 2rem;
+  border: 1.5px solid rgba(255,200,0,0.4);
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 1rem;
+  /* background: rgba(255,215,0,0.06); */
+}
+.from-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  /* color: #aaa; */
+  color: #888;           /* darker */
+  font-weight: 800;      /* ← bold */
+}
+.from-name {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  color: #d4a000;
+  text-shadow: 0 1px 8px rgba(212,160,0,0.3);
+}
+
+/* ── Button row ── */
+.btn-row {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.water-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 3rem;
+  font-family: 'Baloo 2', cursive;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-weight: 800;
+  cursor: crosshair;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.water-btn:active { transform: scale(0.95); }
+
+/* Throw — blue water drop */
+.throw-btn {
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(26,115,232,0.45);
+  animation: dropPulse 2.5s ease-in-out infinite;
+}
+.throw-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 28px rgba(26,115,232,0.65);
+}
+@keyframes dropPulse {
+  0%,100% { box-shadow: 0 4px 18px rgba(26,115,232,0.45); }
+  50%      { box-shadow: 0 4px 30px rgba(26,115,232,0.75), 0 0 0 5px rgba(26,115,232,0.12); }
+}
+
+.water-drop-icon {
+  display: flex;
+  align-items: center;
+  animation: dropBob 1.5s ease-in-out infinite;
+}
+.water-drop-icon svg { width: 1.15rem; height: 1.15rem; }
+@keyframes dropBob {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+/* Clear — light water wash */
+.clear-btn {
+  background: rgba(200, 230, 255, 0.85);
+  color: #1a73e8;
+  border: 1.5px solid rgba(26,115,232,0.3);
+  box-shadow: 0 2px 10px rgba(26,115,232,0.15);
+  padding: 0.8rem 1.3rem;
+  animation: clearPulse 3s ease-in-out infinite;
+}
+.clear-btn:hover {
+  background: rgba(180, 220, 255, 0.95);
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(26,115,232,0.3);
+}
+@keyframes clearPulse {
+  0%,100% { box-shadow: 0 2px 10px rgba(26,115,232,0.15); }
+  50%      { box-shadow: 0 2px 18px rgba(26,115,232,0.35), 0 0 0 4px rgba(26,115,232,0.08); }
+}
+
+.clear-icon {
+  display: flex;
+  align-items: center;
+  animation: clearSpin 4s linear infinite;
+}
+.clear-icon svg { width: 1.1rem; height: 1.1rem; }
+@keyframes clearSpin {
+  0%   { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
+.tap-hint {
+  font-size: 0.65rem;
+  /* color: #ccc; */
+  color: #999;           /* darker */
+  font-weight: 700;      /* ← bold */
+  text-align: center;
+}
+
+/* ── Message ── */
+.holi-message {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0;
+}
+.holi-message.show { animation: msgFade 3.5s ease forwards; }
+.holi-message span {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(1.4rem, 6vw, 2.5rem);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 1.8rem;
+  background: linear-gradient(135deg, rgba(233,30,99,0.93), rgba(103,58,183,0.93));
+  border-radius: 1.5rem;
+  border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  animation: msgPop 3.5s ease forwards;
+}
+
+/* Loading state for buttons */
+.btn-loading {
+  opacity: 0.55;
+  cursor: wait !important;
+  animation: none !important;
+}
+.btn-loading .water-drop-icon,
+.btn-loading .clear-icon {
+  animation: loadingPulse 0.8s ease-in-out infinite !important;
+}
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50%       { opacity: 1;   transform: scale(1.1); }
+}
+
+@keyframes msgFade {
+  0%  { opacity:0; } 10% { opacity:1; } 80% { opacity:1; } 100% { opacity:0; }
+}
+@keyframes msgPop {
+  0%  { transform: scale(0.5) rotate(-4deg); }
+  12% { transform: scale(1.06) rotate(1deg); }
+  20% { transform: scale(1) rotate(0); }
+  100%{ transform: scale(1) rotate(0); }
+}
+
+/* ── Mobile ── */
+@media (max-width: 380px) {
+  .holi-card { padding:1.5rem 1.2rem; gap:0.75rem; border-radius:1.5rem; }
+  .btn-row { gap: 0.5rem; }
+  .water-btn { padding: 0.7rem 1.1rem; font-size: 0.85rem; }
+}
+
