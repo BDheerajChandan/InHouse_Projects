@@ -1,0 +1,44 @@
+.tips-page { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.tips-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+}
+
+.tip-section {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.25rem;
+  border-top: 3px solid var(--c);
+}
+.tip-section-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.9rem; }
+.tip-section-icon { font-size: 1.4rem; }
+.tip-section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+
+.tip-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.tip-row {
+  display: flex; gap: 0.5rem; font-size: 0.8rem; color: var(--text2);
+  background: rgba(255,255,255,0.03); border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+}
+.tip-arrow { flex-shrink: 0; font-weight: 700; }
+
+.timeline-card {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 16px; padding: 1.5rem;
+}
+.timeline-title {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 1.1rem; margin-bottom: 1.25rem;
+}
+.timeline { display: flex; flex-direction: column; gap: 0.75rem; }
+.timeline-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 0.75rem; background: rgba(255,255,255,0.04);
+  border-radius: 10px; border-left: 3px solid var(--c);
+}
+.tl-badge {
+  flex-shrink: 0; padding: 0.3rem 0.6rem; border-radius: 8px;
+  font-size: 0.72rem; font-weight: 700; color: white; white-space: nowrap;
+  min-width: 75px; text-align: center;
+}
+.tl-label { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.tl-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }

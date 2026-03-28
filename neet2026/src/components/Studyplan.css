@@ -1,0 +1,103 @@
+/* Studyplan.css */
+
+.study-plan { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.plan-subject-tabs { display: flex; gap: 0.5rem; }
+.plan-subj-tab {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1.5rem; border-radius: 12px;
+  border: 2px solid var(--border); background: var(--surface);
+  color: var(--text2); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.plan-subj-tab:hover { border-color: var(--c); color: var(--text); }
+.plan-subj-tab.active {
+  border-color: var(--c); background: var(--c);
+  color: white;
+}
+
+.plan-progress-card {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 16px; padding: 1.25rem;
+}
+.plan-progress-header {
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 700; margin-bottom: 0.75rem; font-size: 0.95rem;
+}
+.plan-progress-pct {
+  font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 800;
+}
+.plan-stats {
+  display: flex; gap: 1.5rem; margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+.plan-stats span { font-size: 0.78rem; color: var(--text2); }
+
+.plan-week { }
+
+.week-header {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.week-badge {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.8rem;
+  color: white; flex-shrink: 0;
+}
+.week-title {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem;
+}
+.week-sub { font-size: 0.72rem; color: var(--text3); }
+
+.week-days { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.day-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+.day-card:hover { border-color: var(--c); background: rgba(255,255,255,0.06); }
+.day-card.done { border-left-color: var(--c); opacity: 0.75; }
+
+.day-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.75rem 1rem; cursor: pointer;
+}
+.day-info { display: flex; align-items: center; gap: 0.75rem; }
+.day-num {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.75rem;
+  color: white; flex-shrink: 0;
+}
+.day-topic { font-weight: 600; font-size: 0.875rem; }
+.day-meta { font-size: 0.68rem; color: var(--text3); }
+
+.day-actions { display: flex; align-items: center; gap: 0.75rem; }
+.day-check {
+  background: none; border: none; font-size: 1.1rem;
+  cursor: pointer; transition: transform 0.2s;
+}
+.day-check:hover { transform: scale(1.2); }
+.day-expand { color: var(--text3); font-size: 0.8rem; }
+
+.day-body {
+  padding: 0 1rem 0.75rem; border-top: 1px solid var(--border);
+}
+.subtopics-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.4rem; padding-top: 0.75rem;
+}
+.subtopic-item {
+  display: flex; gap: 0.4rem; font-size: 0.8rem; color: var(--text2);
+}
+
+.day-tip {
+  margin-top: 0.75rem;
+  background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 8px; padding: 0.6rem 0.75rem;
+  font-size: 0.75rem; color: #93c5fd;
+}

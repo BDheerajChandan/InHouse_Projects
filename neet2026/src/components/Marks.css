@@ -1,0 +1,88 @@
+.marks-page { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.marks-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+.marks-subject-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.25rem;
+  border-top: 3px solid var(--c);
+}
+.msc-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+.msc-icon { font-size: 1.25rem; }
+.msc-name { font-family: 'Syne', sans-serif; font-weight: 700; flex: 1; }
+.msc-count { font-size: 0.7rem; color: var(--text3); background: var(--surface2); padding: 0.2rem 0.5rem; border-radius: 10px; }
+.msc-avg { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; line-height: 1; }
+.msc-label { font-size: 0.72rem; color: var(--text3); margin-bottom: 0.25rem; }
+.msc-neet { font-size: 0.78rem; color: var(--text2); margin-top: 0.4rem; }
+
+.marks-form-card {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 16px; padding: 1.5rem;
+}
+.form-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 1rem; }
+.form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+.form-field { display: flex; flex-direction: column; gap: 0.3rem; }
+.form-field label { font-size: 0.72rem; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.form-field input, .form-field select {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.5rem 0.75rem;
+  color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+  outline: none; transition: border-color 0.2s;
+}
+.form-field input:focus, .form-field select:focus { border-color: var(--orange); }
+.form-field input::placeholder { color: var(--text3); }
+
+.form-preview {
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  border-radius: 10px; padding: 0.75rem 1rem;
+  font-size: 0.85rem; margin-bottom: 1rem; color: var(--text2);
+}
+
+.add-entry-btn {
+  background: linear-gradient(135deg, var(--orange), var(--red));
+  color: white; border: none; border-radius: 10px;
+  padding: 0.65rem 1.5rem; font-family: 'DM Sans', sans-serif;
+  font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+}
+.add-entry-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.marks-table-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+}
+.marks-table-header {
+  padding: 1rem 1.25rem; font-family: 'Syne', sans-serif;
+  font-weight: 700; border-bottom: 1px solid var(--border);
+}
+.marks-table {}
+.mt-row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 0.5fr;
+  align-items: center; padding: 0.65rem 1.25rem;
+  border-bottom: 1px solid var(--border); font-size: 0.85rem;
+}
+.mt-row:last-child { border-bottom: none; }
+.mt-head {
+  background: var(--surface2); font-size: 0.72rem; font-weight: 700;
+  color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em;
+}
+.mt-test { font-weight: 600; color: var(--text); }
+.mt-date { color: var(--text3); }
+.mt-score { font-weight: 600; }
+.mt-pct { font-weight: 700; }
+.mt-neet { font-weight: 800; font-family: 'Syne', sans-serif; }
+.mt-del {
+  background: none; border: none; color: var(--text3); cursor: pointer;
+  font-size: 0.8rem; padding: 0.2rem 0.4rem; border-radius: 4px;
+  transition: color 0.2s;
+}
+.mt-del:hover { color: var(--red); }
+
+.marks-trend {
+  padding: 0.75rem 1.25rem; font-size: 0.8rem; color: var(--text2);
+  background: var(--surface2); border-top: 1px solid var(--border);
+}
+
+.marks-empty {
+  text-align: center; padding: 3rem; color: var(--text2);
+  display: flex; flex-direction: column; gap: 0.75rem; align-items: center;
+}
