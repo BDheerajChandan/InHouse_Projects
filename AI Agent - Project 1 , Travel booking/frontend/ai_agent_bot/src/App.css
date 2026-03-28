@@ -1,0 +1,157 @@
+/* ═══════════════════════════════════════════════════════════
+   App.css  —  Shell Layout + Ambient Background
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Root shell ─────────────────────────────────────────────── */
+.app-shell {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background: var(--clr-bg-base);
+}
+
+/* ── Ambient canvas ──────────────────────────────────────────── */
+.app-ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+}
+
+.ambient-orb--1 {
+  width: 640px;
+  height: 640px;
+  top: -260px;
+  left: -200px;
+  background: radial-gradient(circle, rgba(56,139,253,0.14) 0%, transparent 65%);
+  animation: orbDrift1 24s ease-in-out infinite alternate;
+}
+
+.ambient-orb--2 {
+  width: 540px;
+  height: 540px;
+  bottom: -220px;
+  right: -140px;
+  background: radial-gradient(circle, rgba(57,208,216,0.10) 0%, transparent 65%);
+  animation: orbDrift2 30s ease-in-out infinite alternate;
+}
+
+.ambient-orb--3 {
+  width: 320px;
+  height: 320px;
+  top: 40%;
+  left: 40%;
+  background: radial-gradient(circle, rgba(61,214,140,0.05) 0%, transparent 65%);
+  animation: orbDrift3 18s ease-in-out infinite alternate;
+}
+
+@keyframes orbDrift1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(60px, 80px) scale(1.12); }
+}
+@keyframes orbDrift2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-50px, -60px) scale(1.08); }
+}
+@keyframes orbDrift3 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, -40px) scale(1.15); }
+}
+
+/* ── Dot-grid overlay ────────────────────────────────────────── */
+.ambient-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(56,139,253,0.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 0%, transparent 100%);
+  opacity: 0.5;
+}
+
+/* ── Sidebar wrapper ─────────────────────────────────────────── */
+.app-sidebar-wrap {
+  position: relative;
+  z-index: 20;
+  flex-shrink: 0;
+  width: var(--sidebar-w);
+  transition: width var(--dur-slow) var(--ease),
+              opacity var(--dur-slow) var(--ease);
+  overflow: hidden;
+}
+
+.app-sidebar-wrap.collapsed {
+  width: 0;
+  opacity: 0;
+}
+
+/* ── Main pane ───────────────────────────────────────────────── */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Mobile menu button ─────────────────────────────────────── */
+.app-menu-btn {
+  display: none;
+  position: fixed;
+  bottom: 90px;
+  left: 12px;
+  z-index: 50;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--clr-bg-elevated);
+  border: 1px solid var(--clr-border-light);
+  color: var(--clr-text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+  transition: all var(--dur-base) var(--ease);
+}
+
+.app-menu-btn:hover {
+  border-color: var(--clr-accent);
+  color: var(--clr-accent);
+}
+
+@media (max-width: 768px) {
+  .app-menu-btn { display: flex; }
+
+  .app-sidebar-wrap {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 100;
+    width: var(--sidebar-w);
+    box-shadow: 4px 0 40px rgba(0,0,0,0.6);
+  }
+
+  .app-sidebar-wrap.collapsed {
+    width: 0;
+    opacity: 0;
+  }
+
+  .app-sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+    animation: fadeIn var(--dur-base) var(--ease);
+  }
+}

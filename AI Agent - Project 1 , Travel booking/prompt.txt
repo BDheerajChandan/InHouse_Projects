@@ -1,0 +1,962 @@
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\b.dheeraj\Desktop\Agents>code .
+
+C:\Users\b.dheeraj\Desktop\Agents>code .
+
+C:\Users\b.dheeraj\Desktop\Agents>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+
+ Directory of C:\Users\b.dheeraj\Desktop\Agents
+
+17-03-2026  20:51    <DIR>          .
+17-03-2026  20:51    <DIR>          ..
+17-03-2026  20:35    <DIR>          backend
+17-03-2026  21:19    <DIR>          frontend
+17-03-2026  22:03             1,641 prompt.txt
+               1 File(s)          1,641 bytes
+               4 Dir(s)  72,906,473,472 bytes free
+
+C:\Users\b.dheeraj\Desktop\Agents>cd backend
+
+C:\Users\b.dheeraj\Desktop\Agents\backend>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+
+ Directory of C:\Users\b.dheeraj\Desktop\Agents\backend
+
+17-03-2026  20:35    <DIR>          .
+17-03-2026  20:35    <DIR>          ..
+17-03-2026  20:33                 0 .env
+17-03-2026  21:52    <DIR>          app
+17-03-2026  20:33                 0 requirements.txt
+17-03-2026  20:34                 0 run.py
+               3 File(s)              0 bytes
+               3 Dir(s)  72,906,485,760 bytes free
+
+C:\Users\b.dheeraj\Desktop\Agents\backend>tree /f
+Folder PATH listing
+Volume serial number is BE95-2700
+C:.
+│   .env
+│   requirements.txt
+│   run.py
+│
+└───app
+    │   main.py
+    │   __init__.py
+    │
+    ├───agents
+    ├───core
+    ├───data
+    │       __init__.py
+    │
+    ├───database
+    │       __init__.py
+    │
+    ├───models
+    ├───routers
+    │       __init__.py
+    │
+    └───schemas
+            __init__.py
+
+
+C:\Users\b.dheeraj\Desktop\Agents\backend>cd ../frontend
+
+C:\Users\b.dheeraj\Desktop\Agents\frontend>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+
+ Directory of C:\Users\b.dheeraj\Desktop\Agents\frontend
+
+17-03-2026  21:19    <DIR>          .
+17-03-2026  21:19    <DIR>          ..
+17-03-2026  21:24    <DIR>          ai_agent_bot
+               0 File(s)              0 bytes
+               3 Dir(s)  72,906,383,360 bytes free
+
+C:\Users\b.dheeraj\Desktop\Agents\frontend>cd ai_agent_bot
+
+C:\Users\b.dheeraj\Desktop\Agents\frontend\ai_agent_bot>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+
+ Directory of C:\Users\b.dheeraj\Desktop\Agents\frontend\ai_agent_bot
+
+17-03-2026  21:24    <DIR>          .
+17-03-2026  21:24    <DIR>          ..
+17-03-2026  21:19               253 .gitignore
+17-03-2026  21:19               758 eslint.config.js
+17-03-2026  21:19               364 index.html
+17-03-2026  21:19            90,539 package-lock.json
+17-03-2026  21:19               608 package.json
+17-03-2026  21:19    <DIR>          public
+17-03-2026  21:19             1,027 README.md
+17-03-2026  21:24    <DIR>          src
+17-03-2026  21:19               161 vite.config.js
+               7 File(s)         93,710 bytes
+               4 Dir(s)  72,914,923,520 bytes free
+
+C:\Users\b.dheeraj\Desktop\Agents\frontend\ai_agent_bot>tree /f
+Folder PATH listing
+Volume serial number is BE95-2700
+C:.
+│   .gitignore
+│   eslint.config.js
+│   index.html
+│   package-lock.json
+│   package.json
+│   README.md
+│   vite.config.js
+│
+├───public
+│       favicon.svg
+│       icons.svg
+│
+└───src
+    │   App.css
+    │   App.jsx
+    │   index.css
+    │   main.jsx
+    │
+    ├───assets
+    │   │   hero.png
+    │   │   react.svg
+    │   │   vite.svg
+    │   │
+    │   ├───bgaudio
+    │   └───bgimage
+    ├───components
+    └───styles
+
+C:\Users\b.dheeraj\Desktop\Agents\frontend\ai_agent_bot>
+
+
+########################################################################################################
+
+In backend, 
+- main.py handles main application
+- run.py handles uvicorn run , CORRsMidlleware, app:app.main
+- Dynamically create a database and table if not exist for booking.
+  database name "Booking"
+  table names {"train","bus","flight","car","bike","Travel_history"}
+ "Travel_history" has combined "train","bus","flight","car","bike" data
+
+- Each table has schema{'vehicle':'vehicletype like  "train","bus","flight","car" or "bike"',
+                        'From':'From which location ',
+                        'To':'Upto which location'
+                        }
+
+- Using Openai or genai model and Api key If I ask a bot "Book a train ticket from bbsr to vskp" then
+  booking should be done by ai agent. Results to be saved to respected database
+- If I ask a query "Show me travel travel history" or "Show me travel train travel history " or
+  "Show me travel train travel history between two dates" or "Show me travel travel history before or after dates"
+- LLM or AI models should understand my query and must perform retrieval data from database by create a SQL command 
+  and perform all crud , insert,select ,... operations as per my query.
+
+
+You are an AI Booking Agent.
+
+Your job:
+1. Understand user query
+2. Choose correct tool
+3. Extract parameters
+4. Return JSON
+
+Available tools:
+- create_booking(vehicle, source, destination, date)
+- get_travel_history(vehicle, start_date, end_date)
+- create_database_and_tables
+
+Rules:
+- Always return valid JSON
+- Do not generate raw SQL
+
+
+Frontend (React Chat)
+   ↓
+POST /chat
+   ↓
+Router (chat.py)
+   ↓
+AI Agent (booking_agent.py)
+   ↓
+LLM → JSON (tool + arguments)
+   ↓
+Tool Executor (tools.py)
+   ↓
+Database (db.py)
+   ↓
+Response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Help me in AI Agent project 100 % AI Agent:
+
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+C:\Users\b.dheeraj\Desktop\Agents>code .
+C:\Users\b.dheeraj\Desktop\Agents>code .
+C:\Users\b.dheeraj\Desktop\Agents>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+ Directory of C:\Users\b.dheeraj\Desktop\Agents
+17-03-2026  20:51    <DIR>          .
+17-03-2026  20:51    <DIR>          ..
+17-03-2026  20:35    <DIR>          backend
+17-03-2026  21:19    <DIR>          frontend
+17-03-2026  22:03             1,641 prompt.txt
+               1 File(s)          1,641 bytes
+               4 Dir(s)  72,906,473,472 bytes free
+C:\Users\b.dheeraj\Desktop\Agents>cd backend
+C:\Users\b.dheeraj\Desktop\Agents\backend>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+ Directory of C:\Users\b.dheeraj\Desktop\Agents\backend
+17-03-2026  20:35    <DIR>          .
+17-03-2026  20:35    <DIR>          ..
+17-03-2026  20:33                 0 .env
+17-03-2026  21:52    <DIR>          app
+17-03-2026  20:33                 0 requirements.txt
+17-03-2026  20:34                 0 run.py
+               3 File(s)              0 bytes
+               3 Dir(s)  72,906,485,760 bytes free
+C:\Users\b.dheeraj\Desktop\Agents\backend>tree /f
+Folder PATH listing
+Volume serial number is BE95-2700
+C:.
+│   .env
+│   requirements.txt
+│   run.py
+│
+└───app
+    │   main.py
+    │   __init__.py
+    │
+    ├───agents
+    ├───core
+    ├───data
+    │       __init__.py
+    │
+    ├───database
+    │       __init__.py
+    │
+    ├───models
+    ├───routers
+    │       __init__.py
+    │
+    └───schemas
+            __init__.py
+C:\Users\b.dheeraj\Desktop\Agents\backend>cd ../frontend
+C:\Users\b.dheeraj\Desktop\Agents\frontend>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+ Directory of C:\Users\b.dheeraj\Desktop\Agents\frontend
+17-03-2026  21:19    <DIR>          .
+17-03-2026  21:19    <DIR>          ..
+17-03-2026  21:24    <DIR>          ai_agent_bot
+               0 File(s)              0 bytes
+               3 Dir(s)  72,906,383,360 bytes free
+C:\Users\b.dheeraj\Desktop\Agents\frontend>cd ai_agent_bot
+C:\Users\b.dheeraj\Desktop\Agents\frontend\ai_agent_bot>dir
+ Volume in drive C has no label.
+ Volume Serial Number is BE95-2700
+ Directory of C:\Users\b.dheeraj\Desktop\Agents\frontend\ai_agent_bot
+17-03-2026  21:24    <DIR>          .
+17-03-2026  21:24    <DIR>          ..
+17-03-2026  21:19               253 .gitignore
+17-03-2026  21:19               758 eslint.config.js
+17-03-2026  21:19               364 index.html
+17-03-2026  21:19            90,539 package-lock.json
+17-03-2026  21:19               608 package.json
+17-03-2026  21:19    <DIR>          public
+17-03-2026  21:19             1,027 README.md
+17-03-2026  21:24    <DIR>          src
+17-03-2026  21:19               161 vite.config.js
+               7 File(s)         93,710 bytes
+               4 Dir(s)  72,914,923,520 bytes free
+C:\Users\b.dheeraj\Desktop\Agents\frontend\ai_agent_bot>tree /f
+Folder PATH listing
+Volume serial number is BE95-2700
+C:.
+│   .gitignore
+│   eslint.config.js
+│   index.html
+│   package-lock.json
+│   package.json
+│   README.md
+│   vite.config.js
+│
+├───public
+│       favicon.svg
+│       icons.svg
+│
+└───src
+    │   App.css
+    │   App.jsx
+    │   index.css
+    │   main.jsx
+    │
+    ├───assets
+    │   │   hero.png
+    │   │   react.svg
+    │   │   vite.svg
+    │   │
+    │   ├───bgaudio
+    │   └───bgimage
+    ├───components
+    └───styles
+C:\Users\b.dheeraj\Desktop\Agents\frontend\ai_agent_bot>
+
+
+
+In backend, 
+- main.py handles main application
+- run.py handles uvicorn run , CORRsMidlleware, app:app.main
+- Dynamically create a database and table if not exist for booking.
+  database name "Booking"
+  table names {"train","bus","flight","car","bike","Travel_history"}
+ "Travel_history" has combined "train","bus","flight","car","bike" data
+- Each table has schema{'vehicle':'vehicletype like  "train","bus","flight","car" or "bike"',
+                        'From':'From which location ',
+                        'To':'Upto which location'
+                        }
+- Using Openai or genai model and Api key If I ask a bot "Book a train ticket from bbsr to vskp" then
+  booking should be done by ai agent. Results to be saved to respected database
+- If I ask a query "Show me travel travel history" or "Show me travel train travel history " or
+  "Show me travel train travel history between two dates" or "Show me travel travel history before or after dates"
+- LLM or AI models should understand my query and must perform retrieval data from database by create a SQL command 
+  and perform all crud , insert,select ,... operations as per my query.
+You are an AI Booking Agent.
+Your job:
+1. Understand user query
+2. Choose correct tool
+3. Extract parameters
+4. Return JSON
+Available tools:
+- create_booking(vehicle, source, destination, date)
+- get_travel_history(vehicle, start_date, end_date)
+- create_database_and_tables
+Rules:
+- Always return valid JSON
+- Do not generate raw SQL
+Frontend (React Chat)
+   ↓
+POST /chat
+   ↓
+Router (chat.py)
+   ↓
+AI Agent (booking_agent.py)
+   ↓
+LLM → JSON (tool + arguments)
+   ↓
+Tool Executor (tools.py)
+   ↓
+Database (db.py)
+   ↓
+Response
+
+If User query : "Book a train ticket from VSKP to BBSR on 25th March 2026" then using LLM model and api key need to understand then
+input and return required field values and do postgress operations.  "Book a train ticket from VSKP to BBSR on 25th March 2026" will return from and to loactions , date, year, vehicle which will returned and 
+inserted to respective tables. Add TABLE_NAME from .env  will contains entire travel history including all vehicle tables.
+
+If "Book a train and flight ticket from VSKP to BBSR on 25th March 2026" then table train and flight table to be inserted and combined data in TABLE_NAME .env
+If "Update a train ticket date from VSKP to BBSR on 25th March 2026 to 27th March 2026" then table should be updated in respective vehicle table
+
+Use LLM model and API key and full prompt for all operations and no import re.
+
+Fully dynamic
+Help me in Fully updated code for both backend and Frontend code. As per structure shared. As per industrial standards help me in fully updated code and new files. And Fully dynamic code.
+
+
+
+select * from bike;
+select * from bus;
+select * from car;
+select * from flight;
+select * from train;
+select * from travel_booking_history;
+select * from travel_history;
+
+
+
+
+#####################################################################################################
+
+
+# AI Travel Booking Agent — Complete Project Reference Prompt
+
+This is the **master prompt** to give to any AI assistant (Claude, GPT-4, etc.) when working on this project. Paste this entire document at the start of a new conversation to give the AI full context.
+
+---
+
+## 🧭 Project Overview
+
+A full-stack AI-powered travel booking system.
+
+- **Frontend**: React + Vite chat interface
+- **Backend**: FastAPI + PostgreSQL
+- **AI Layer**: OpenAI GPT or Google Gemini — understands natural language, picks the right tool, executes PostgreSQL operations
+- **No raw SQL from the user** — the LLM generates structured JSON → Python tools execute the SQL
+
+### What it can do (by natural language):
+| User says | Action |
+|---|---|
+| "Book a train from BBSR to VSKP on 25 March 2026" | INSERT into `train` + `travel_history` |
+| "Book bus and flight from HWH to BBSR on 27 March" | INSERT into `bus`, `flight`, `travel_history` |
+| "Book bus HWH→BBSR on 27 March, return car on 3 April" | INSERT 2 rows with different routes/dates |
+| "Show me all travel history" | SELECT all from `travel_history` |
+| "Show me train bookings between Jan and June" | SELECT with date filter |
+| "Update train from BBSR to VSKP on 25 March to 27 March" | UPDATE by route match (no ID needed) |
+| "Change bus date to 29 March and departure to VSKP" | UPDATE multiple fields at once |
+| "Update booking #3 date to 27 April" | UPDATE by explicit ID |
+| "Cancel booking #5" | DELETE from history + vehicle table |
+| "Hi / Good morning / Help" | Friendly human response, no LLM cost |
+
+---
+
+## 📁 Complete Project File Structure
+
+```
+Agents/
+├── backend/
+│   ├── .env                          ← All config: DB, LLM keys, table names
+│   ├── requirements.txt              ← Pinned dependencies
+│   ├── run.py                        ← python run.py to start server
+│   └── app/
+│       ├── __init__.py
+│       ├── main.py                   ← FastAPI factory, CORS, startup
+│       ├── core/
+│       │   ├── __init__.py
+│       │   └── config.py             ← Settings class — reads ALL .env vars
+│       ├── database/
+│       │   ├── __init__.py
+│       │   └── db.py                 ← PostgreSQL connect, init_db, execute helpers
+│       ├── agents/
+│       │   ├── __init__.py
+│       │   ├── booking_agent.py      ← LLM caller, greeting detector, JSON extractor
+│       │   └── tools.py              ← All SQL tool implementations
+│       ├── routers/
+│       │   ├── __init__.py
+│       │   └── chat.py               ← POST /api/chat endpoint
+│       ├── schemas/
+│       │   ├── __init__.py
+│       │   └── chat.py               ← Pydantic ChatRequest / ChatResponse
+│       ├── models/
+│       │   └── __init__.py
+│       └── data/
+│           └── __init__.py
+│
+└── frontend/
+    └── ai_agent_bot/
+        ├── .env                      ← VITE_API_BASE_URL=http://localhost:8000
+        ├── index.html                ← Fonts: Outfit + JetBrains Mono
+        ├── package.json              ← React 18, Axios, Vite
+        ├── vite.config.js            ← Dev server + /api proxy to :8000
+        └── src/
+            ├── main.jsx              ← ReactDOM root
+            ├── App.jsx               ← Root: sidebar, header, chat, input, toasts
+            ├── App.css               ← Shell layout, ambient background, responsive
+            ├── index.css             ← CSS design tokens, reset, keyframes
+            ├── services/
+            │   ├── api.js            ← Axios client, chatWithAgent(), healthCheck()
+            │   └── chatStore.js      ← Constants, formatters, useChat() hook
+            ├── components/
+            │   ├── Sidebar.jsx       ← Vehicle chips, quick prompts, stack status
+            │   ├── Header.jsx        ← Hamburger toggle, backend status pill
+            │   ├── ChatWindow.jsx    ← Auto-scroll, date separator, scroll FAB
+            │   ├── MessageBubble.jsx ← User/agent bubbles, booking cards, history table
+            │   ├── ChatInput.jsx     ← Auto-resize, cancel button, rotating placeholder
+            │   ├── TypingIndicator.jsx ← Animated "thinking" dots
+            │   ├── WelcomeBanner.jsx ← Capability cards on first load
+            │   ├── ToastNotification.jsx ← Toast stack + useToasts() hook
+            │   └── EmptyState.jsx    ← Reusable empty/error state
+            └── styles/               ← One .css per component (plain CSS)
+                ├── Sidebar.css
+                ├── Header.css
+                ├── ChatWindow.css
+                ├── MessageBubble.css
+                ├── ChatInput.css
+                ├── TypingIndicator.css
+                ├── WelcomeBanner.css
+                ├── ToastNotification.css
+                └── EmptyState.css
+```
+
+---
+
+## ⚙️ Environment Variables (.env)
+
+```env
+# ── LLM Provider ────────────────────────────────────────────────
+LLM_PROVIDER=openai        # "openai" or "gemini"
+
+# ── OpenAI ──────────────────────────────────────────────────────
+OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-3.5-turbo
+
+# ── Google Gemini ────────────────────────────────────────────────
+GEMINI_API_KEY=AIza...
+GEMINI_MODEL=gemini-1.5-flash
+
+# ── PostgreSQL ───────────────────────────────────────────────────
+DATABASE=Booking           # → stored as "booking" (lowercase by config.py)
+HOST=localhost
+PORT=5432
+USER=postgres
+PASSWORD=your_password
+TABLE_NAME=Travel_history  # → stored as "travel_history" (lowercase)
+
+# ── CORS ─────────────────────────────────────────────────────────
+ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
+```
+
+**Critical rule**: `config.py` lowercases `DB_NAME` and `TABLE_NAME` at load time. PostgreSQL stores all unquoted identifiers in lowercase. Never use uppercase table names in SQL.
+
+---
+
+## 🗄️ PostgreSQL Schema
+
+**Database**: `booking` (auto-created on startup)
+
+**Tables created automatically** (all identical schema):
+- `train`, `bus`, `flight`, `car`, `bike` — vehicle-specific tables
+- `travel_history` — combined mirror of all vehicle tables (from `TABLE_NAME` in .env)
+
+**Column schema** (every table):
+```sql
+id          SERIAL       PRIMARY KEY
+vehicle     VARCHAR(20)  NOT NULL          -- train / bus / flight / car / bike
+from_loc    TEXT         NOT NULL          -- departure city (full name, title case)
+to_loc      TEXT         NOT NULL          -- arrival city (full name, title case)
+travel_date DATE                           -- YYYY-MM-DD (nullable)
+booked_at   TIMESTAMP    DEFAULT NOW()     -- auto-set
+status      VARCHAR(20)  DEFAULT 'confirmed'
+```
+
+**Important**: Every booking INSERT goes into BOTH the vehicle table AND `travel_history`.
+
+---
+
+## 🤖 Agent Architecture & Data Flow
+
+```
+User types message in React chat
+         ↓
+POST /api/chat  { "message": "..." }
+         ↓
+routers/chat.py  →  run_agent(message)
+         ↓
+booking_agent.py:
+  Step 0: Is it a greeting? → instant human reply (no LLM cost)
+  Step 1: Call LLM (OpenAI or Gemini)
+         - Sends compact system prompt + user message
+         - max_tokens=250 for fast JSON response
+  Step 2: Extract JSON from response (brace-counting, no regex)
+  Step 3: Expand city abbreviations (safety net: hwh→Howrah, bbsr→Bhubaneswar etc.)
+  Step 4: dispatch_tool(tool_name, arguments) → tools.py
+         ↓
+tools.py:
+  - create_booking: INSERT into vehicle table + travel_history
+  - create_multi_booking: multiple bookings, different routes/dates
+  - get_travel_history: SELECT with dynamic WHERE filters
+  - update_booking_by_id: UPDATE by explicit #ID
+  - update_booking_by_query: UPDATE by route/date match, supports multiple fields
+  - delete_booking: DELETE by ID
+         ↓
+db.py: execute_query() / execute_write() → PostgreSQL
+         ↓
+JSON response → frontend renders booking card / history table
+```
+
+---
+
+## 🛠️ LLM Tools Reference
+
+### 1. `create_booking`
+```json
+{
+  "tool": "create_booking",
+  "arguments": {
+    "vehicles": ["train"],
+    "source": "Bhubaneswar",
+    "destination": "Visakhapatnam",
+    "date": "2026-03-25"
+  }
+}
+```
+- `vehicles` is a **list** — single `["train"]` or multi `["bus","car"]` for same route
+- `date` can be `null` if not mentioned
+- Inserts into each vehicle table AND `travel_history`
+
+### 2. `create_multi_booking`
+```json
+{
+  "tool": "create_multi_booking",
+  "arguments": {
+    "bookings": [
+      {"vehicle": "bus",  "source": "Howrah",       "destination": "Bhubaneswar", "date": "2026-03-27"},
+      {"vehicle": "car",  "source": "Bhubaneswar",  "destination": "Howrah",      "date": "2026-04-03"}
+    ]
+  }
+}
+```
+- Use when vehicles have **different routes OR different dates**
+- Each booking gets its own vehicle table insert + travel_history insert
+
+### 3. `get_travel_history`
+```json
+{
+  "tool": "get_travel_history",
+  "arguments": {
+    "vehicle": "train",
+    "start_date": "2026-01-01",
+    "end_date": "2026-06-30"
+  }
+}
+```
+- All args are optional/nullable
+- Queries `travel_history` table (TABLE_NAME from .env)
+
+### 4. `update_booking_by_id`
+```json
+{
+  "tool": "update_booking_by_id",
+  "arguments": {
+    "booking_id": 3,
+    "vehicle": "train",
+    "field": "travel_date",
+    "value": "2026-03-27"
+  }
+}
+```
+- Use when user gives an explicit booking **#ID**
+- `field` options: `"from"` | `"to"` | `"travel_date"` | `"status"`
+
+### 5. `update_booking_by_query` ← KEY TOOL
+```json
+{
+  "tool": "update_booking_by_query",
+  "arguments": {
+    "vehicle": "bus",
+    "source": "Howrah",
+    "destination": "Bhubaneswar",
+    "current_date": "2026-03-27",
+    "updates": [
+      {"field": "travel_date", "value": "2026-03-29"},
+      {"field": "from",        "value": "Visakhapatnam"}
+    ]
+  }
+}
+```
+- **`source` / `destination` / `current_date`** = FILTERS to FIND the existing booking
+- **`updates`** = list of changes to apply (can be multiple fields at once)
+- Falls back to old `field` + `value` single args for backward compatibility
+
+### 6. `delete_booking`
+```json
+{
+  "tool": "delete_booking",
+  "arguments": {
+    "booking_id": 5,
+    "vehicle": "train"
+  }
+}
+```
+
+---
+
+## 🗺️ City Abbreviation Map
+
+All abbreviations expanded by Python (`_expand_city()`) **after** LLM response — safety net:
+
+| Abbreviation | Full City |
+|---|---|
+| bbsr, bbs | Bhubaneswar |
+| vskp, vizag | Visakhapatnam |
+| hwh | Howrah |
+| hyd | Hyderabad |
+| blr, bengaluru | Bangalore |
+| maa, mas | Chennai |
+| del, ndls | New Delhi |
+| bom, cst | Mumbai |
+| kol, ccl | Kolkata |
+| pune, pnq | Pune |
+| cbe | Coimbatore |
+| tvc | Thiruvananthapuram |
+| adi | Ahmedabad |
+| cok | Kochi |
+
+---
+
+## 🐛 Known Issues & Fixes Applied
+
+### 1. `relation "travel_history" does not exist`
+**Cause**: PostgreSQL lowercases identifiers. `Travel_history` ≠ `travel_history`.
+**Fix**: `config.py` lowercases `TABLE_NAME` and `DB_NAME` at load time. All SQL uses lowercase directly.
+
+### 2. Frontend shows `—` for From/To columns
+**Cause**: DB returns `from_loc`/`to_loc` but frontend reads `from`/`to`.
+**Fix**: `_serialize()` in tools.py adds both keys: `from_loc` + alias `from`, `to_loc` + alias `to`.
+
+### 3. Update query fails — city abbreviation not expanded
+**Cause**: LLM sends `"Hwh"` but DB has `"Howrah"`.
+**Fix**: `_expand_cities_in_args()` runs after LLM response, expands all city fields including `source`, `destination`, and values in `updates` list.
+
+### 4. Multi-booking with different dates only used one date
+**Cause**: `create_booking` takes one date for all vehicles.
+**Fix**: New `create_multi_booking` tool — each booking has its own vehicle, source, destination, date.
+
+### 5. Cannot update multiple fields in one message
+**Cause**: Old `update_booking_by_query` only took one `field` + `value`.
+**Fix**: New `updates: list` parameter — `[{field, value}, {field, value}]` — all applied to matched rows.
+
+### 6. OpenAI `TypeError: proxies` / timeout
+**Cause**: `openai==1.30.1` + `httpx>0.26.0` conflict. Also large system prompt = slow.
+**Fix**: 
+- `requirements.txt` pins `httpx==0.26.0`
+- `booking_agent.py` uses explicit `httpx.Client` (Mode 1) + raw httpx fallback (Mode 2)
+- System prompt < 300 tokens, `max_tokens=250` on response
+- Frontend axios timeout = 90 seconds with AbortController cancel
+
+---
+
+## 📦 Dependencies
+
+### Backend (`requirements.txt`)
+```
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-dotenv==1.0.1
+psycopg2-binary==2.9.9
+openai==1.30.1
+google-generativeai==0.7.0
+pydantic==2.7.1
+python-dateutil==2.9.0
+httpx==0.26.0        # MUST be pinned — prevents "proxies" TypeError
+```
+
+### Frontend (`package.json` key deps)
+```json
+{
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "axios": "^1.7.2",
+  "vite": "^5.2.11"
+}
+```
+
+---
+
+## 🚀 Setup & Run
+
+### Backend
+```bat
+cd backend
+pip install -r requirements.txt
+:: Fill in .env with your API key and PostgreSQL credentials
+python run.py
+:: Server: http://localhost:8000
+:: Swagger: http://localhost:8000/docs
+```
+
+### Frontend
+```bat
+cd frontend\ai_agent_bot
+npm install
+npm run dev
+:: App: http://localhost:5173
+```
+
+### On first backend start, you'll see:
+```
+[Config] 📋 History Table: travel_history   ← lowercase (PostgreSQL safe)
+[Config] 🗄️  Database: booking @ localhost:5432
+[DB] ✔  Database 'booking' already exists
+[DB] ✔  Table 'train' ready
+[DB] ✔  Table 'bus' ready
+[DB] ✔  Table 'flight' ready
+[DB] ✔  Table 'car' ready
+[DB] ✔  Table 'bike' ready
+[DB] ✔  Table 'travel_history' ready
+[APP] ✅ Ready → http://0.0.0.0:8000
+```
+
+---
+
+## 🎨 Frontend Architecture
+
+### Design System
+- **Font**: Outfit (UI) + JetBrains Mono (code/mono) — Google Fonts
+- **Theme**: Deep navy dark theme with blue accent (`#388bfd`)
+- **CSS**: Plain CSS with custom properties (no Tailwind, no CSS-in-JS)
+- **Layout**: Sidebar + Chat area, responsive (sidebar collapses on mobile)
+
+### State Management
+All state lives in `useChat()` hook (`chatStore.js`):
+- `messages` — conversation history
+- `loading` — LLM request in progress
+- `backendOk` — health check result
+- `send(text)` — send message with AbortController
+- `cancel()` — abort in-flight request
+- `retry()` — resend last message
+- `clearChat()` — reset conversation
+
+### API Layer (`services/api.js`)
+- Axios instance, `baseURL` from `VITE_API_BASE_URL` env var
+- `chatWithAgent(message, signal)` — POST /api/chat with AbortController support
+- `healthCheck()` — GET /health (5s timeout)
+- Human-readable error messages for timeout, network, server errors
+
+### Message Rendering (`MessageBubble.jsx`)
+- Reads both `from_loc`/`from` and `to_loc`/`to` — handles both DB column names and aliases
+- `BookingCard` — visual route card for single bookings
+- `MultiBookingCards` — stacked cards for multi-vehicle bookings
+- `HistoryTable` — sortable table with status badges
+- `InlineMarkdown` — renders `**bold**`, `*italic*`, `- list` items
+
+---
+
+## 🔑 Key Design Decisions
+
+| Decision | Reason |
+|---|---|
+| `config.py` lowercases TABLE_NAME and DB_NAME | PostgreSQL case sensitivity — prevents "relation does not exist" |
+| `_serialize()` adds `from`/`to` aliases | Frontend and DB use different column name conventions |
+| `_expand_cities_in_args()` after LLM | LLM sometimes skips abbreviation expansion — Python is the safety net |
+| `max_tokens=250` on LLM response | JSON tool call is < 150 tokens — drastically reduces latency |
+| `httpx==0.26.0` pin | `openai==1.30.1` incompatible with newer httpx |
+| AbortController in frontend | User can cancel slow LLM requests instead of waiting for timeout |
+| Greeting detection without LLM | `hi/hello/thanks/bye` handled by Python set lookup — zero API cost |
+| `updates: list` in update_booking_by_query | Single request can update multiple fields (date + location together) |
+| `create_multi_booking` separate tool | Different routes/dates per vehicle can't fit in single `create_booking` |
+
+---
+
+## 💬 Example Conversations & Expected LLM Output
+
+### Single booking
+**User**: "Book a train ticket from BBSR to VSKP on 25th March 2026"
+```json
+{"tool":"create_booking","arguments":{"vehicles":["train"],"source":"Bhubaneswar","destination":"Visakhapatnam","date":"2026-03-25"}}
+```
+
+### Multi-vehicle same route
+**User**: "Book train and flight from VSKP to BBSR on 25 March"
+```json
+{"tool":"create_booking","arguments":{"vehicles":["train","flight"],"source":"Visakhapatnam","destination":"Bhubaneswar","date":"2026-03-25"}}
+```
+
+### Multi-vehicle different routes/dates
+**User**: "Book bus from HWH to BBSR on 27 March and return car on 3rd April"
+```json
+{"tool":"create_multi_booking","arguments":{"bookings":[{"vehicle":"bus","source":"Howrah","destination":"Bhubaneswar","date":"2026-03-27"},{"vehicle":"car","source":"Bhubaneswar","destination":"Howrah","date":"2026-04-03"}]}}
+```
+
+### Show filtered history
+**User**: "Show me all train bookings between January and June 2026"
+```json
+{"tool":"get_travel_history","arguments":{"vehicle":"train","start_date":"2026-01-01","end_date":"2026-06-30"}}
+```
+
+### Update by route — multiple fields
+**User**: "Change bus from HWH to BBSR on 27 March — new date 29 March, change departure to VSKP"
+```json
+{"tool":"update_booking_by_query","arguments":{"vehicle":"bus","source":"Howrah","destination":"Bhubaneswar","current_date":"2026-03-27","updates":[{"field":"travel_date","value":"2026-03-29"},{"field":"from","value":"Visakhapatnam"}]}}
+```
+
+### Update by ID
+**User**: "Update booking #3 date to 27 April"
+```json
+{"tool":"update_booking_by_id","arguments":{"booking_id":3,"vehicle":"train","field":"travel_date","value":"2026-04-27"}}
+```
+
+### Delete
+**User**: "Cancel booking #5"
+```json
+{"tool":"delete_booking","arguments":{"booking_id":5,"vehicle":null}}
+```
+
+---
+
+## 🔧 Debugging Guide
+
+### Backend terminal shows everything:
+```
+[Config] — settings loaded from .env
+[DB]     — database/table operations
+[Agent]  — message received, tool selected, city expansions
+[LLM]    — OpenAI/Gemini call, token count, mode (SDK vs raw httpx)
+[SQL]    — every SQL statement and params before execution
+[Tools]  — tool function entry/exit
+[Dispatch] — tool routing
+[Router] — HTTP request/response
+```
+
+### Common errors and fixes:
+
+| Error | Cause | Fix |
+|---|---|---|
+| `relation "X" does not exist` | Mixed case table name in SQL | config.py lowercases TABLE_NAME |
+| `LLM error: proxies` | httpx version conflict | `httpx==0.26.0` in requirements.txt |
+| `timeout exceeded` | Prompt too long / slow API | max_tokens=250, compact prompt |
+| `No matching booking found` | City abbreviation not expanded | Check CITY_MAP in booking_agent.py |
+| `Frontend shows — in From/To` | Reading wrong column name | _serialize() adds from/to aliases |
+| `CORS error` | Frontend URL not in ALLOWED_ORIGINS | Add to .env ALLOWED_ORIGINS |
+
+---
+
+## 📝 When Asking Claude/GPT for Help
+
+Start your message with this context block:
+
+```
+I'm working on an AI Travel Booking Agent project.
+Stack: FastAPI + PostgreSQL (backend) + React/Vite (frontend) + OpenAI/Gemini (LLM).
+
+Key files:
+- backend/app/core/config.py       — settings, TABLE_NAME lowercased here
+- backend/app/database/db.py       — PostgreSQL connections, init_db
+- backend/app/agents/booking_agent.py — LLM caller, greeting detection, city expander
+- backend/app/agents/tools.py      — all SQL tools, create/read/update/delete
+- backend/app/routers/chat.py      — POST /api/chat
+- frontend/src/services/api.js     — axios client with 90s timeout + AbortController
+- frontend/src/services/chatStore.js — useChat() hook, TOOL_META, VEHICLE_META
+- frontend/src/components/MessageBubble.jsx — renders booking cards + history table
+
+Critical rules:
+1. TABLE_NAME from .env is stored lowercase in config.py (travel_history not Travel_history)
+2. All SQL table names must be lowercase to match PostgreSQL
+3. booking_agent.py _expand_cities_in_args() runs after LLM to expand abbreviations
+4. tools.py _serialize() adds 'from'/'to' aliases for 'from_loc'/'to_loc' columns
+5. httpx must be pinned to 0.26.0 in requirements.txt
+6. max_tokens=250 on LLM calls to avoid timeouts
+
+[PASTE YOUR SPECIFIC QUESTION OR ERROR HERE]
+```

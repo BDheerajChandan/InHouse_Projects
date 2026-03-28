@@ -1,0 +1,203 @@
+/* ─── ChatInput ─────────────────────────────────────────────── */
+.ci-outer {
+  padding: 12px 20px 18px;
+  background: var(--clr-bg-surface);
+  border-top: 1px solid var(--clr-border);
+  flex-shrink: 0;
+}
+
+.ci-wrap {
+  position: relative;
+  background: var(--clr-bg-input);
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  transition: border-color var(--dur-base) var(--ease),
+              box-shadow var(--dur-base) var(--ease);
+}
+
+.ci-wrap:focus-within,
+.ci-wrap--active {
+  border-color: var(--clr-border-glow);
+  box-shadow: 0 0 0 3px rgba(56,139,253,0.1), var(--shadow-glow);
+}
+
+.ci-wrap--loading {
+  border-color: rgba(57,208,216,0.4) !important;
+  box-shadow: 0 0 0 3px rgba(57,208,216,0.07), var(--shadow-teal) !important;
+}
+
+/* ── Glow top bar ── */
+.ci-glow-bar {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--clr-accent) 30%,
+    var(--clr-accent-teal) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.ci-wrap:focus-within .ci-glow-bar,
+.ci-wrap--loading .ci-glow-bar {
+  opacity: 1;
+}
+
+/* ── Inner row ── */
+.ci-inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 10px 12px 10px 14px;
+}
+
+/* ── Decorations ── */
+.ci-decorations {
+  display: flex;
+  align-items: center;
+  padding-bottom: 6px;
+}
+
+.ci-deco-icon {
+  font-size: 16px;
+  opacity: 0.35;
+  cursor: default;
+  user-select: none;
+  transition: opacity var(--dur-fast);
+}
+
+.ci-wrap:focus-within .ci-deco-icon { opacity: 0.55; }
+
+/* ── Textarea ── */
+.ci-textarea {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  resize: none;
+  color: var(--clr-text-primary);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.65;
+  min-height: 22px;
+  max-height: 160px;
+  overflow-y: auto;
+  caret-color: var(--clr-accent);
+  transition: color var(--dur-fast);
+}
+
+.ci-textarea::placeholder {
+  color: var(--clr-text-hint);
+  transition: color var(--dur-base);
+  font-size: 13px;
+}
+
+.ci-textarea:focus::placeholder { color: var(--clr-text-muted); }
+
+.ci-textarea:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Send button ── */
+.ci-send-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-bg-elevated);
+  color: var(--clr-text-muted);
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--dur-base) var(--ease-spring);
+  margin-bottom: 2px;
+}
+
+.ci-send-btn--ready {
+  background: var(--clr-accent);
+  border-color: var(--clr-accent);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(56,139,253,0.45);
+}
+
+.ci-send-btn--ready:hover {
+  background: var(--clr-accent-light);
+  border-color: var(--clr-accent-light);
+  transform: scale(1.07) translateY(-1px);
+  box-shadow: 0 6px 22px rgba(56,139,253,0.55);
+}
+
+.ci-send-btn--ready:active {
+  transform: scale(0.96);
+}
+
+.ci-send-btn--loading {
+  background: var(--clr-bg-elevated) !important;
+  border-color: var(--clr-accent-teal) !important;
+  color: var(--clr-accent-teal) !important;
+  cursor: wait !important;
+  box-shadow: 0 0 14px rgba(57,208,216,0.3) !important;
+  transform: none !important;
+}
+
+.ci-send-icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Spinner ── */
+.ci-spinner {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(57,208,216,0.25);
+  border-top-color: var(--clr-accent-teal);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Hints ── */
+.ci-hints {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 14px 10px;
+  flex-wrap: wrap;
+}
+
+.ci-hint-key {
+  font-family: var(--font-code);
+  font-size: 10px;
+  color: var(--clr-accent);
+  background: rgba(56,139,253,0.08);
+  border: 1px solid rgba(56,139,253,0.18);
+  border-radius: var(--r-xs);
+  padding: 1px 5px;
+}
+
+.ci-hint-sep {
+  font-family: var(--font-code);
+  font-size: 10px;
+  color: var(--clr-text-muted);
+}
+
+.ci-hint-dot {
+  font-size: 10px;
+  color: var(--clr-text-hint);
+}
+
+.ci-hint-chars {
+  font-family: var(--font-code);
+  font-size: 10px;
+  color: var(--clr-text-hint);
+  margin-left: auto;
+}

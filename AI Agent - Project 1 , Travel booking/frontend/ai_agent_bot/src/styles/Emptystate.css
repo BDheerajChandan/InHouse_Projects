@@ -1,0 +1,49 @@
+/* ─── EmptyState ────────────────────────────────────────────── */
+.es-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 32px 20px;
+  text-align: center;
+}
+
+.es-icon {
+  font-size: 36px;
+  opacity: 0.6;
+  animation: fadeIn var(--dur-slow) var(--ease);
+}
+
+.es-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--clr-text-secondary);
+}
+
+.es-desc {
+  font-size: 13px;
+  color: var(--clr-text-muted);
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.es-action-btn {
+  margin-top: 6px;
+  padding: 8px 20px;
+  background: var(--clr-bg-elevated);
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--r-md);
+  color: var(--clr-text-secondary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+}
+
+.es-action-btn:hover {
+  border-color: var(--clr-accent);
+  color: var(--clr-accent);
+  background: rgba(56,139,253,0.06);
+}
