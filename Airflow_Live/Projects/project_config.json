@@ -1,0 +1,27 @@
+
+{
+  "project_1": {
+    "path": "Projects/project_1",
+    "name": "Project Alpha",
+    "backend": {
+      "host": "localhost",
+      "port": 8001
+    },
+    "frontend": {
+      "host": "localhost",
+      "port": 3002
+    }
+  },
+  "project_2": {
+    "path": "Projects/project_2",
+    "name": "Project Beta",
+    "backend": {
+      "host": "localhost",
+      "port": 8002
+    },
+    "frontend": {
+      "host": "localhost",
+      "port": 3003
+    }
+  }
+}

@@ -1,0 +1,1 @@
+# Projects/project_2/backend/app/__init__.py

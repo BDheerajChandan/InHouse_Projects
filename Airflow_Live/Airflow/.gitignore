@@ -1,0 +1,10 @@
+/venvs
+/logs
+/config
+/data
+/plugins
+
+__pycache__
+
+*.pyc
+.env

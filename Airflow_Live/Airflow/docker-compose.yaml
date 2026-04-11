@@ -1,0 +1,172 @@
+# Airflow/docker-compose.yaml
+
+services:
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    restart: always
+
+  airflow-webserver:
+    build:
+      context: ..
+      dockerfile: Airflow/Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+      _AIRFLOW_WWW_USER_USERNAME: airflow
+      _AIRFLOW_WWW_USER_PASSWORD: airflow
+      _AIRFLOW_WWW_USER_FIRSTNAME: Admin
+      _AIRFLOW_WWW_USER_LASTNAME: User
+      _AIRFLOW_WWW_USER_ROLE: Admin
+      _AIRFLOW_WWW_USER_EMAIL: admin@email.com
+      AIRFLOW__WEBSERVER__BASE_URL: "http://localhost:8080"
+      AIRFLOW__LOGGING__REMOTE_LOGGING: "false"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./config:/opt/airflow/config
+      - ./venvs:/opt/airflow/venvs
+      - ../Projects:/opt/airflow/Projects
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "
+      airflow db init &&
+      airflow users create
+      --username airflow
+      --password airflow
+      --firstname Admin
+      --lastname User
+      --role Admin
+      --email admin@email.com || true &&
+      airflow webserver "
+    restart: always
+
+  airflow-scheduler:
+    build:
+      context: ..
+      dockerfile: Airflow/Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__WEBSERVER__BASE_URL: "http://localhost:8080"
+      AIRFLOW__LOGGING__REMOTE_LOGGING: "false"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./config:/opt/airflow/config
+      - ./venvs:/opt/airflow/venvs
+      - ../Projects:/opt/airflow/Projects
+    # ── Scheduler also needs ports mapped because LocalExecutor runs
+    #    DAG tasks as child processes of the SCHEDULER container.
+    #    Without these, backend/frontend PIDs are inside the scheduler
+    #    container and unreachable from your Windows host browser.
+    ports:
+      - "8001:8001"
+      - "8002:8002"
+      - "3002:3002"
+      - "3003:3003"
+    command: scheduler
+    restart: always
+
+volumes:
+  postgres-db-volume:
+
+# # Airflow/docker-compose.yaml
+
+# services:
+
+#   postgres:
+#     image: postgres:13
+#     environment:
+#       POSTGRES_USER: airflow
+#       POSTGRES_PASSWORD: airflow
+#       POSTGRES_DB: airflow
+#     volumes:
+#       - postgres-db-volume:/var/lib/postgresql/data
+#     restart: always
+
+#   airflow-webserver:
+#     build:
+#       context: ..
+#       dockerfile: Airflow/Dockerfile
+#     depends_on:
+#       - postgres
+#     environment:
+#       AIRFLOW__CORE__EXECUTOR: LocalExecutor
+#       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+#       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+#       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+#       _AIRFLOW_WWW_USER_USERNAME: airflow
+#       _AIRFLOW_WWW_USER_PASSWORD: airflow
+#       _AIRFLOW_WWW_USER_FIRSTNAME: Admin
+#       _AIRFLOW_WWW_USER_LASTNAME: User
+#       _AIRFLOW_WWW_USER_ROLE: Admin
+#       _AIRFLOW_WWW_USER_EMAIL: admin@email.com
+#       AIRFLOW__WEBSERVER__BASE_URL: "http://localhost:8080"
+#       AIRFLOW__LOGGING__REMOTE_LOGGING: "false"
+#     volumes:
+#       - ./dags:/opt/airflow/dags
+#       - ./logs:/opt/airflow/logs
+#       - ./plugins:/opt/airflow/plugins
+#       - ./config:/opt/airflow/config
+#       - ./venvs:/opt/airflow/venvs
+#       - ../Projects:/opt/airflow/Projects
+#     ports:
+#       - "8080:8080"
+#       - "8001:8001"   # project_1 backend
+#       - "8002:8002"   # project_2 backend
+#       - "3002:3002"   # project_1 frontend
+#       - "3003:3003"   # project_2 frontend
+#     command: >
+#       bash -c "
+#       airflow db init &&
+#       airflow users create
+#       --username airflow
+#       --password airflow
+#       --firstname Admin
+#       --lastname User
+#       --role Admin
+#       --email admin@email.com || true &&
+#       airflow webserver "
+#     restart: always
+
+#   airflow-scheduler:
+#     build:
+#       context: ..
+#       dockerfile: Airflow/Dockerfile
+#     depends_on:
+#       - postgres
+#     environment:
+#       AIRFLOW__CORE__EXECUTOR: LocalExecutor
+#       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+#       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+#       AIRFLOW__WEBSERVER__BASE_URL: "http://localhost:8080"
+#       AIRFLOW__LOGGING__REMOTE_LOGGING: "false"
+#     volumes:
+#       - ./dags:/opt/airflow/dags
+#       - ./logs:/opt/airflow/logs
+#       - ./plugins:/opt/airflow/plugins
+#       - ./config:/opt/airflow/config
+#       - ./venvs:/opt/airflow/venvs
+#       - ../Projects:/opt/airflow/Projects
+#     command: scheduler
+#     restart: always
+
+# volumes:
+#   postgres-db-volume:

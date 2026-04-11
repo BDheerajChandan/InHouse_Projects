@@ -1,0 +1,120 @@
+/* Projects/project_2/frontend/src/components/Wish.css */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lato:wght@300;400&display=swap');
+
+:root {
+  --night-bg:     #0d0f1a;
+  --night-mid:    #1e2240;
+  --night-accent: #7c83d4;
+  --night-soft:   #a8aee8;
+  --night-white:  #e8eaf6;
+  --star-color:   #ffd700;
+}
+
+.wish-card {
+  font-family: 'Lato', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--night-bg);
+  background-image:
+    radial-gradient(ellipse 50% 50% at 50% 0%, #1e2240 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 80% 90%, #2a1f5e44 0%, transparent 60%);
+  gap: 1.6rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating stars */
+.wish-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.wish-star {
+  position: absolute;
+  font-size: calc(6px + var(--i) * 1.5px);
+  color: var(--star-color);
+  left:  calc(5% + var(--i) * 8%);
+  top:   calc(8% + (var(--i) * 37%) - (var(--i) * var(--i) * 2%));
+  opacity: 0.15;
+  animation: twinkle calc(2s + var(--i) * 0.4s) ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity: 0.1; transform: scale(0.8); }
+  to   { opacity: 0.6; transform: scale(1.2); }
+}
+
+.wish-badge {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--night-bg);
+  background: var(--night-accent);
+  padding: 0.3rem 1.1rem;
+  border-radius: 999px;
+  animation: fadeUp 0.7s ease both;
+}
+
+.wish-welcome {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--night-white);
+  margin: 0;
+  text-align: center;
+  line-height: 1.1;
+  animation: fadeUp 0.7s ease 0.15s both;
+}
+
+.wish-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeUp 0.7s ease 0.3s both;
+}
+
+.wish-line {
+  margin: 0;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+.wish-line--greet { color: var(--night-soft); }
+.wish-line--wish  {
+  color: var(--night-accent);
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+}
+
+.wish-moon {
+  font-size: 2.5rem;
+  animation: fadeUp 0.7s ease 0.45s both, sway 4s ease-in-out 1s infinite;
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-8deg); }
+  50%       { transform: rotate(8deg); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.wish-state {
+  font-family: 'Lato', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--night-soft);
+  background: var(--night-bg);
+}
+.wish-error { color: #e74c3c; }
