@@ -1,0 +1,224 @@
+/* CoupleSection.css */
+.couple-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  position: relative;
+}
+
+.couple-section.marriage {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(139, 0, 0, 0.2) 0%, transparent 60%),
+    linear-gradient(180deg, #0d0005 0%, #140008 100%);
+}
+
+.couple-section.engagement {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(108, 52, 131, 0.2) 0%, transparent 60%),
+    linear-gradient(180deg, #060010 0%, #0a0018 100%);
+}
+
+.section-inner {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: white;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.couple-section.marriage .section-title {
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.couple-section.engagement .section-title {
+  text-shadow: 0 0 30px rgba(187, 143, 206, 0.3);
+}
+
+.section-divider {
+  width: 80px;
+  height: 1px;
+  margin: 0 auto;
+}
+
+.couple-section.marriage .section-divider {
+  background: linear-gradient(90deg, transparent, var(--marriage-gold), transparent);
+}
+
+.couple-section.engagement .section-divider {
+  background: linear-gradient(90deg, transparent, var(--engagement-purple-light), transparent);
+}
+
+/* Cards layout */
+.couple-cards {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.couple-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 36px 28px 28px;
+  text-align: center;
+  width: 280px;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.couple-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.04));
+  /* -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); */
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.couple-card.marriage:hover {
+  box-shadow: 0 16px 48px rgba(212, 175, 55, 0.15);
+}
+
+.couple-card.engagement:hover {
+  box-shadow: 0 16px 48px rgba(142, 68, 173, 0.15);
+}
+
+/* Image */
+.card-img-wrap {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+}
+
+.card-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.card-img-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.couple-card.marriage .card-img-ring {
+  background: conic-gradient(from 0deg, var(--marriage-gold), var(--marriage-maroon), var(--marriage-gold));
+  animation: spin 6s linear infinite;
+}
+
+.couple-card.engagement .card-img-ring {
+  background: conic-gradient(from 0deg, var(--engagement-purple), #2980b9, var(--engagement-purple));
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Card body */
+.card-role {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.couple-card.marriage .card-role { color: var(--marriage-gold); }
+.couple-card.engagement .card-role { color: var(--engagement-purple-light); }
+
+.card-name {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: white;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.card-parents {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-style: italic;
+}
+
+/* Center heart */
+.couple-heart {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+/* Dress code badge */
+.dress-code-badge {
+  margin: 40px auto 0;
+  width: fit-content;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dress-code-badge.marriage {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.dress-code-badge.engagement {
+  background: rgba(142, 68, 173, 0.1);
+  border: 1px solid rgba(142, 68, 173, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .couple-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .couple-card {
+    width: 100%;
+    max-width: 320px;
+  }
+  .couple-heart {
+    font-size: 1.5rem;
+  }
+}

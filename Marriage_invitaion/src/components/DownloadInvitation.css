@@ -1,0 +1,65 @@
+/* DownloadInvitation.css */
+.download-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.download-btn-main {
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.download-btn-main:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.download-btn-main.marriage {
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: var(--marriage-gold);
+}
+.download-btn-main.marriage:hover:not(:disabled) {
+  background: rgba(212, 175, 55, 0.22);
+}
+
+.download-btn-main.engagement {
+  background: rgba(142, 68, 173, 0.12);
+  border: 1px solid rgba(142, 68, 173, 0.35);
+  color: var(--engagement-purple-light);
+}
+.download-btn-main.engagement:hover:not(:disabled) {
+  background: rgba(142, 68, 173, 0.22);
+}
+
+.pdf-progress-bar {
+  width: 200px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.pdf-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.pdf-progress-bar.marriage .pdf-progress-fill {
+  background: var(--marriage-gold);
+}
+.pdf-progress-bar.engagement .pdf-progress-fill {
+  background: var(--engagement-purple-light);
+}

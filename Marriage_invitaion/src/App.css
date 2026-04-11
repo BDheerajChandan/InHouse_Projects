@@ -1,0 +1,167 @@
+/* =====================================================
+   App.css - App-Level Layout Styles
+   ===================================================== */
+
+.app-wrapper {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.8s ease;
+}
+
+/* Marriage theme background */
+.app-wrapper.marriage-theme {
+  background: linear-gradient(135deg, #0d0005 0%, #1a0008 40%, #0d0005 100%);
+}
+
+/* Engagement theme background */
+.app-wrapper.engagement-theme {
+  background: linear-gradient(135deg, #060010 0%, #0e0020 40%, #060010 100%);
+}
+
+/* ---- Desktop: Horizontal Slide Layout ---- */
+.slides-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+.slide-page {
+  min-width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ---- Mobile: Vertical Scroll Layout ---- */
+.mobile-scroll-container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mobile-section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #1a0008 0%, #0a0003 100%);
+}
+
+.loading-overlay.engagement {
+  background: radial-gradient(ellipse at center, #0e0020 0%, #040010 100%);
+}
+
+/* Confetti layer */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(212, 175, 55, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, border-color 0.3s;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--marriage-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--marriage-gold), #f0d060);
+  z-index: 9997;
+  transition: width 0.1s linear;
+}
+
+.engagement-theme .scroll-progress {
+  background: linear-gradient(90deg, var(--engagement-purple), var(--engagement-purple-light));
+}
+
+/* Section dots navigation */
+.section-dots {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.section-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.section-dot.active {
+  background: var(--marriage-gold);
+  border-color: var(--marriage-gold);
+  transform: scale(1.4);
+}
+
+.engagement-theme .section-dot.active {
+  background: var(--engagement-purple);
+  border-color: var(--engagement-purple-light);
+}
+
+@media (max-width: 768px) {
+  .section-dots {
+    display: none;
+  }
+}

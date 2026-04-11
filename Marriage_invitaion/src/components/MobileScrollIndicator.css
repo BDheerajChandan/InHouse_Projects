@@ -1,0 +1,39 @@
+/* MobileScrollIndicator.css */
+.scroll-indicator {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.scroll-text {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.scroll-indicator.marriage .scroll-arrow {
+  color: var(--marriage-gold);
+}
+
+.scroll-indicator.engagement .scroll-arrow {
+  color: var(--engagement-purple-light);
+}
+
+@media (min-width: 1025px) {
+  .scroll-indicator {
+    display: none;
+  }
+}

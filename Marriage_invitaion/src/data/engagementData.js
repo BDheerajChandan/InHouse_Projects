@@ -1,0 +1,115 @@
+// src\data\engagementData.js
+
+const engagementData = {
+  invitationType: "Engagement",
+  brideName: "Bride?",
+  groomName: "Groom?",
+  brideImage: null,
+  groomImage: null,
+  coupleImage: null,
+  parents: {
+    brideParents: "Mr. & Mrs. brideParents",
+    groomParents: "Mr. & Mrs. groomParents",
+  },
+  story: [
+    {
+      title: "First Glance",
+      description: "A mutual friend's birthday party brought them together — and one look was all it took to spark something magical.",
+      year: "2022",
+      icon: "👀",
+    },
+    {
+      title: "Late Night Calls",
+      description: "Hours turned into minutes as they discovered a bond deeper than words — talking till the stars faded into dawn.",
+      year: "2023",
+      icon: "📞",
+    },
+    {
+      title: "First Date",
+      description: "A quiet dinner by the lake, candles flickering, hearts racing — a night neither of them will ever forget.",
+      year: "2023",
+      icon: "🕯️",
+    },
+    {
+      title: "The Ring",
+      description: "Arjun hid a ring inside her favourite book — she turned the page and found forever waiting for her.",
+      year: "2025",
+      icon: "💎",
+    },
+    {
+      title: "Engagement",
+      description: "Family gathered, flowers bloomed, and two hearts officially began their forever — tonight we celebrate with you.",
+      year: "2026",
+      icon: "💍",
+    },
+  ],
+  events: [
+    {
+      name: "Ring Ceremony",
+      date: "8 November 2026",
+      time: "11:00 AM",
+      venue: "Sterling Garden",
+      address: "Patia, Bhubaneswar, Odisha",
+      icon: "💍",
+      color: "#8e44ad",
+    },
+    {
+      name: "Cocktail Lunch",
+      date: "8 November 2026",
+      time: "1:00 PM",
+      venue: "Sterling Banquet",
+      address: "Patia, Bhubaneswar, Odisha",
+      icon: "🍾",
+      color: "#c0392b",
+    },
+    {
+      name: "Family Get-together",
+      date: "8 November 2026",
+      time: "6:00 PM",
+      venue: "Sterling Hall",
+      address: "Patia, Bhubaneswar, Odisha",
+      icon: "👨‍👩‍👧‍👦",
+      color: "#2980b9",
+    },
+    {
+      name: "Engagement Dinner",
+      date: "8 November 2026",
+      time: "8:00 PM",
+      venue: "Rooftop Terrace",
+      address: "Patia, Bhubaneswar, Odisha",
+      icon: "🌙",
+      color: "#6c3483",
+    },
+  ],
+  eventDate: "2026-11-08T11:00:00",
+  venue: {
+    name: "Sterling Convention Centre",
+    address: "Patia, Bhubaneswar, Odisha 751024",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3741.5!2d85.8400!3d20.3500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDIxJzAwLjAiTiA4NcKwNTAnMjQuMCJF!5e0!3m2!1sen!2sin!4v1234567890",
+    mapLink: "https://maps.google.com/?q=20.3500,85.8400",
+    latitude: 20.35,
+    longitude: 85.84,
+  },
+  rsvp: {
+    contact: "7328078523",
+    whatsapp: "7328078523",
+    email: "dheerajchandan21@gmail.com",
+  },
+  gallery: [
+    "/images/eng-gallery1.jpg",
+    "/images/eng-gallery2.jpg",
+    "/images/eng-gallery3.jpg",
+    "/images/eng-gallery4.jpg",
+    "/images/eng-gallery5.jpg",
+    "/images/eng-gallery6.jpg",
+  ],
+  // backgroundMusic: "../assets/bgaudio/engagement-theme.mp3",
+  backgroundMusic: new URL('../assets/bgaudio/engagement-theme.mp3', import.meta.url).href,
+  themeColor: "#8e44ad",
+  themeSecondary: "#2c3e50",
+  themeTertiary: "#f5f0ff",
+  dressCode: "Semi-Formal / Pastel",
+};
+
+export default engagementData;

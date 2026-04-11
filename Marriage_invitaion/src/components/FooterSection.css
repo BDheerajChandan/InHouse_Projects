@@ -1,0 +1,191 @@
+/* FooterSection.css */
+.footer-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-section.marriage {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(139, 0, 0, 0.2) 0%, transparent 60%),
+    linear-gradient(180deg, #160008 0%, #0a0003 100%);
+}
+.footer-section.engagement {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(108, 52, 131, 0.2) 0%, transparent 60%),
+    linear-gradient(180deg, #0c001e 0%, #040010 100%);
+}
+
+.footer-inner {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Top border */
+.footer-border-top {
+  height: 1px;
+  transform-origin: left;
+  margin-bottom: 48px;
+}
+
+.footer-border-top.marriage {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+.footer-border-top.engagement {
+  background: linear-gradient(90deg, transparent, rgba(187, 143, 206, 0.5), transparent);
+}
+
+/* Monogram */
+.footer-monogram {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 1;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.footer-monogram.marriage {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--marriage-gold);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+}
+.footer-monogram.engagement {
+  background: rgba(142, 68, 173, 0.1);
+  border: 1px solid rgba(142, 68, 173, 0.3);
+  color: var(--engagement-purple-light);
+  text-shadow: 0 0 20px rgba(187, 143, 206, 0.5);
+  box-shadow: 0 0 30px rgba(142, 68, 173, 0.15);
+}
+
+/* Thank you heading */
+.footer-thankyou {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.footer-thankyou.marriage { color: white; text-shadow: 0 0 40px rgba(212, 175, 55, 0.25); }
+.footer-thankyou.engagement { color: white; text-shadow: 0 0 40px rgba(187, 143, 206, 0.25); }
+
+/* Message */
+.footer-message {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.footer-message em {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Hearts */
+.footer-hearts {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.footer-heart-icon {
+  display: inline-block;
+}
+
+.footer-heart-icon.marriage { color: var(--marriage-gold); }
+.footer-heart-icon.engagement { color: var(--engagement-purple-light); }
+
+/* Download button */
+.download-pdf-btn {
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 36px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.download-pdf-btn.marriage {
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: var(--marriage-gold);
+}
+.download-pdf-btn.marriage:hover {
+  background: rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+}
+
+.download-pdf-btn.engagement {
+  background: rgba(142, 68, 173, 0.12);
+  border: 1px solid rgba(142, 68, 173, 0.35);
+  color: var(--engagement-purple-light);
+}
+.download-pdf-btn.engagement:hover {
+  background: rgba(142, 68, 173, 0.2);
+  box-shadow: 0 4px 20px rgba(142, 68, 173, 0.2);
+}
+
+/* Event summary */
+.footer-event-summary {
+  margin-bottom: 40px;
+}
+
+.footer-event-name {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+
+.footer-event-details {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.04em;
+}
+
+/* Bottom border */
+.footer-border-bottom {
+  height: 1px;
+  transform-origin: left;
+  margin-bottom: 20px;
+}
+
+.footer-border-bottom.marriage {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+}
+.footer-border-bottom.engagement {
+  background: linear-gradient(90deg, transparent, rgba(187, 143, 206, 0.3), transparent);
+}
+
+/* Copyright */
+.footer-copy {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 480px) {
+  .footer-inner {
+    padding: 0 8px;
+  }
+}

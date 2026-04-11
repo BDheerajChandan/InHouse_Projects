@@ -1,0 +1,110 @@
+/* BackgroundMusic.css */
+.music-btn-wrap {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.music-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.music-play-btn:hover {
+  transform: scale(1.1);
+}
+
+.music-btn-wrap.marriage .music-play-btn {
+  background: linear-gradient(135deg, #d4af37, #a07c10);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.5);
+}
+
+.music-btn-wrap.engagement .music-play-btn {
+  background: linear-gradient(135deg, #8e44ad, #6c3483);
+  box-shadow: 0 4px 16px rgba(142, 68, 173, 0.5);
+}
+
+.music-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 18px;
+}
+
+.bar {
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: white;
+  transform-origin: bottom;
+}
+
+.play-icon {
+  color: white;
+  font-size: 1rem;
+  margin-left: 2px;
+}
+
+.vol-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.vol-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.volume-panel {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.volume-slider {
+  /* -webkit-appearance: none; */
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--marriage-gold);
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .music-btn-wrap {
+    bottom: 18px;
+    right: 14px;
+  }
+}

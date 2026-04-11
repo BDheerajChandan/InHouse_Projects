@@ -1,0 +1,231 @@
+/* =====================================================
+   index.css - Global Styles & CSS Variables
+   Marriage / Engagement Invitation App
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Marriage Theme */
+  --marriage-gold: #d4af37;
+  --marriage-gold-light: #f0d060;
+  --marriage-gold-dark: #a07c10;
+  --marriage-maroon: #8B0000;
+  --marriage-pink: #fce4ec;
+  --marriage-beige: #fdf5e6;
+  --marriage-cream: #fff9f0;
+  --marriage-text: #3d1f1f;
+
+  /* Engagement Theme */
+  --engagement-purple: #8e44ad;
+  --engagement-purple-light: #bb8fce;
+  --engagement-silver: #bdc3c7;
+  --engagement-blue: #2980b9;
+  --engagement-rose-gold: #b76e79;
+  --engagement-lavender: #f5f0ff;
+  --engagement-text: #1a0a2e;
+
+  /* Shared */
+  --white: #ffffff;
+  --black: #000000;
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.35);
+  --shadow-purple: 0 4px 20px rgba(142, 68, 173, 0.35);
+  --border-radius: 16px;
+  --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Fonts */
+  --font-display: 'Great Vibes', cursive;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-subheading: 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background: #0a0005;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a0a2e;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--marriage-gold);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #fff;
+}
+
+/* Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Glass Card Utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+}
+
+/* Responsive breakpoints reference:
+   Mobile: < 768px
+   Tablet: 768px - 1024px
+   Desktop: > 1024px
+*/
+
+.hosted-by-banner {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2100;
+
+  padding: 12px 28px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hosted-by-banner strong {
+  color: var(--marriage-gold);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 4px;
+}
+
+.toggle-wrapper {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 12px 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.toggle-label {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  transition: color 0.4s;
+  white-space: nowrap;
+}
+
+.toggle-switch {
+  width: 72px;
+  height: 34px;
+}
+
+.toggle-thumb {
+  width: 28px;
+  height: 28px;
+}
+
+.toggle-icon {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hosted-by-banner {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  .hosted-by-banner strong {
+    font-size: 1rem;
+  }
+
+  .toggle-wrapper {
+    top: 70px;
+    padding: 10px 20px;
+    gap: 10px;
+  }
+
+  .toggle-label {
+    font-size: 0.8rem;
+  }
+}

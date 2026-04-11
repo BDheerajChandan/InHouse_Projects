@@ -1,0 +1,70 @@
+/* DownloadInvitationVideo.css */
+.video-download-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.video-download-btn {
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.video-download-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.video-download-btn.marriage {
+  background: rgba(139, 0, 0, 0.12);
+  border: 1px solid rgba(139, 0, 0, 0.35);
+  color: #ff6b6b;
+}
+.video-download-btn.marriage:hover:not(:disabled) {
+  background: rgba(139, 0, 0, 0.22);
+}
+
+.video-download-btn.engagement {
+  background: rgba(41, 128, 185, 0.12);
+  border: 1px solid rgba(41, 128, 185, 0.35);
+  color: #74b9ff;
+}
+.video-download-btn.engagement:hover:not(:disabled) {
+  background: rgba(41, 128, 185, 0.22);
+}
+
+.video-progress-bar {
+  width: 200px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.video-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.video-progress-bar.marriage .video-progress-fill { background: #ff6b6b; }
+.video-progress-bar.engagement .video-progress-fill { background: #74b9ff; }
+
+.video-note {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  max-width: 240px;
+  line-height: 1.6;
+}

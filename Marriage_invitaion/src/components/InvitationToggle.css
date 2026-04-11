@@ -1,0 +1,136 @@
+/* InvitationToggle.css */
+.toggle-wrapper {
+  position:fixed;
+  top: 18px;
+  left: 12%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display:flex;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 8px 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.toggle-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  transition: color 0.4s;
+  white-space: nowrap;
+}
+
+.toggle-label.active-marriage {
+  color: var(--marriage-gold);
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+}
+
+.toggle-label.active-engagement {
+  color: var(--engagement-purple-light);
+  text-shadow: 0 0 12px rgba(187, 143, 206, 0.5);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 58px;
+  height: 28px;
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.4s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-switch.marriage {
+  background: linear-gradient(90deg, #d4af37, #a07c10);
+}
+
+.toggle-switch.engagement {
+  background: linear-gradient(90deg, #6c3483, #8e44ad);
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 6px;
+  font-size: 0.75rem;
+  z-index: 0;
+}
+
+.toggle-switch.marriage .toggle-icon {
+  right: auto;
+  left: 6px;
+}
+
+@media (max-width: 480px) {
+  .toggle-wrapper {
+    top: 12px;
+    padding: 6px 14px;
+    gap: 8px;
+  }
+  .toggle-label {
+    font-size: 0.6rem;
+  }
+}
+
+
+/* Hosted by banner */
+.hosted-by-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2100;
+  text-align: center;
+  padding: 5px 12px;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.hosted-by-banner strong {
+  color: var(--marriage-gold);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* Push toggle down to make room for banner */
+.toggle-wrapper {
+  top: 34px !important;
+}
+
+@media (max-width: 480px) {
+  .hosted-by-banner {
+    font-size: 0.55rem;
+    padding: 4px 8px;
+  }
+  .toggle-wrapper {
+    top: 30px !important;
+  }
+}

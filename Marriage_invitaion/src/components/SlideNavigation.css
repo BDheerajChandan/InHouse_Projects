@@ -1,0 +1,114 @@
+/* SlideNavigation.css */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1200;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  color: white;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-arrow.marriage:hover {
+  border-color: var(--marriage-gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  color: var(--marriage-gold);
+}
+
+.nav-arrow.engagement:hover {
+  border-color: var(--engagement-purple-light);
+  box-shadow: 0 0 20px rgba(187, 143, 206, 0.3);
+  color: var(--engagement-purple-light);
+}
+
+.nav-arrow-left {
+  left: 18px;
+}
+
+.nav-arrow-right {
+  right: 18px;
+}
+
+.nav-arrow.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Progress bar at bottom */
+.slide-progress {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.progress-dots {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.progress-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slide-progress.marriage .progress-dot.active {
+  background: var(--marriage-gold);
+  border-color: var(--marriage-gold);
+  transform: scale(1.5);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+.slide-progress.engagement .progress-dot.active {
+  background: var(--engagement-purple-light);
+  border-color: var(--engagement-purple-light);
+  transform: scale(1.5);
+  box-shadow: 0 0 8px rgba(187, 143, 206, 0.6);
+}
+
+.progress-count {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 1024px) {
+  .nav-arrow,
+  .slide-progress {
+    display: none;
+  }
+}

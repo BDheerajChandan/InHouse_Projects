@@ -1,0 +1,16 @@
+/* AnimatedFlowers.css */
+.flowers-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-petal {
+  position: absolute;
+  top: 0;
+  user-select: none;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+}

@@ -1,0 +1,159 @@
+/* LoadingScreen.css */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.loading-screen.marriage {
+  background: radial-gradient(ellipse at center, #1a0008 0%, #0a0003 100%);
+}
+.loading-screen.engagement {
+  background: radial-gradient(ellipse at center, #0e0020 0%, #040010 100%);
+}
+
+/* Envelope */
+.envelope-wrap {
+  perspective: 600px;
+}
+
+.envelope {
+  width: 200px;
+  height: 140px;
+  position: relative;
+  border-radius: 4px;
+}
+
+.envelope.marriage {
+  background: linear-gradient(135deg, #3d0010 0%, #5a0018 100%);
+  box-shadow: 0 16px 48px rgba(139, 0, 0, 0.4), 0 0 0 1px rgba(212, 175, 55, 0.2);
+}
+.envelope.engagement {
+  background: linear-gradient(135deg, #1a003a 0%, #2d0060 100%);
+  box-shadow: 0 16px 48px rgba(108, 52, 131, 0.4), 0 0 0 1px rgba(187, 143, 206, 0.2);
+}
+
+/* Flap */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transform-style: preserve-3d;
+  z-index: 2;
+}
+
+.envelope-flap.marriage {
+  background: linear-gradient(180deg, #5a0018, #3d0010);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+.envelope-flap.engagement {
+  background: linear-gradient(180deg, #2d0060, #1a003a);
+  border-bottom: 1px solid rgba(187, 143, 206, 0.3);
+}
+
+/* Letter inside */
+.envelope-letter {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 100px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.envelope-letter.marriage {
+  background: linear-gradient(180deg, #fff9f0, #fdf5e6);
+}
+.envelope-letter.engagement {
+  background: linear-gradient(180deg, #f5f0ff, #ede0ff);
+}
+
+.letter-icon {
+  font-size: 1.5rem;
+}
+
+.letter-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  font-style: italic;
+}
+
+.envelope-letter.marriage .letter-text { color: #3d1f1f; }
+.envelope-letter.engagement .letter-text { color: #1a0a2e; }
+
+/* Seal */
+.envelope-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  z-index: 3;
+}
+
+.envelope-seal.marriage {
+  background: var(--marriage-gold);
+  color: #1a0008;
+  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.5);
+}
+.envelope-seal.engagement {
+  background: var(--engagement-purple);
+  color: white;
+  box-shadow: 0 2px 12px rgba(142, 68, 173, 0.5);
+}
+
+/* Tagline */
+.loading-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Enter button */
+.loading-enter-btn {
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.loading-enter-btn.marriage {
+  background: linear-gradient(135deg, #d4af37, #a07c10);
+  color: #1a0008;
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+}
+.loading-enter-btn.engagement {
+  background: linear-gradient(135deg, #8e44ad, #6c3483);
+  color: white;
+  box-shadow: 0 6px 24px rgba(142, 68, 173, 0.4);
+}
