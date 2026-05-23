@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────────── */
+/* ROOT */
+/* ───────────────────────────────────────────── */
+
+:root {
+  --bg: #070B14;
+  --surface: rgba(15, 23, 42, 0.72);
+  --surface-2: rgba(30, 41, 59, 0.55);
+
+  --border: rgba(255,255,255,0.08);
+
+  --text: #F8FAFC;
+  --muted: #94A3B8;
+
+  --cyan: #00D4FF;
+  --violet: #7C3AED;
+  --green: #10B981;
+  --amber: #F59E0B;
+  --red: #EF4444;
+
+  --shadow:
+    0 10px 30px rgba(0,0,0,.35);
+
+  --shadow-glow:
+    0 0 40px rgba(0,212,255,.12);
+
+  --radius: 24px;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+/* ───────────────────────────────────────────── */
+/* BACKGROUND */
+/* ───────────────────────────────────────────── */
+
+.grid-bg {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(0,212,255,.10), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(124,58,237,.12), transparent 30%),
+    #070B14;
+}
+
+.grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+
+  background-size: 40px 40px;
+
+  mask-image: radial-gradient(circle at center, black, transparent 90%);
+  pointer-events: none;
+}
+
+/* ───────────────────────────────────────────── */
+/* GLASS CARD */
+/* ───────────────────────────────────────────── */
+
+.glass-card {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    var(--shadow),
+    var(--shadow-glow);
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,.03),
+      transparent
+    );
+
+  transform: translateX(-100%);
+  transition: transform .8s;
+}
+
+.glass-card:hover::before {
+  transform: translateX(100%);
+}
+
+.glass-card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(0,212,255,.22);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.45),
+    0 0 40px rgba(0,212,255,.18);
+}
+
+/* ───────────────────────────────────────────── */
+/* BUTTONS */
+/* ───────────────────────────────────────────── */
+
+.btn-primary {
+  border: none;
+  outline: none;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--cyan),
+      var(--violet)
+    );
+
+  color: white;
+
+  font-weight: 700;
+  letter-spacing: .04em;
+
+  transition: all .25s ease;
+
+  box-shadow:
+    0 8px 24px rgba(0,212,255,.25);
+
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,.22),
+      transparent
+    );
+
+  transform: translateX(-120%);
+}
+
+.btn-primary:hover::before {
+  transform: translateX(120%);
+  transition: .7s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.01);
+
+  box-shadow:
+    0 12px 30px rgba(0,212,255,.35);
+}
+
+.btn-primary:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* Ghost */
+
+.btn-ghost {
+  border-radius: 18px;
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  background: rgba(255,255,255,.03);
+
+  color: var(--text);
+
+  transition: all .2s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(0,212,255,.25);
+}
+
+/* ───────────────────────────────────────────── */
+/* TAGS */
+/* ───────────────────────────────────────────── */
+
+.tag {
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #E2E8F0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,212,255,.12),
+      rgba(124,58,237,.12)
+    );
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  transition: all .2s ease;
+}
+
+.tag:hover {
+  transform: scale(1.05);
+
+  border-color: rgba(0,212,255,.28);
+
+  box-shadow:
+    0 0 18px rgba(0,212,255,.12);
+}
+
+/* ───────────────────────────────────────────── */
+/* SCROLLBAR */
+/* ───────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    var(--cyan),
+    var(--violet)
+  );
+
+  border-radius: 999px;
+}
+
+/* ───────────────────────────────────────────── */
+/* ANIMATIONS */
+/* ───────────────────────────────────────────── */
+
+@keyframes floaty {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.floaty {
+  animation: floaty 4s ease-in-out infinite;
+}
+
+/* ───────────────────────────────────────────── */
+/* RESPONSIVE */
+/* ───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: 18px;
+  }
+}

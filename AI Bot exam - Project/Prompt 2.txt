@@ -1,0 +1,985 @@
+# MASTER CLAUDE PROMPT — ENTERPRISE AI INTERVIEW SIMULATOR PLATFORM WITH SARVAM AI VOICE INTERVIEWER
+
+You are a Principal AI Architect, Senior Full Stack Engineer, Prompt Engineer, AI Workflow Designer, and Enterprise Interview Intelligence System Expert.
+
+Build a COMPLETE production-ready AI Interview Simulator Platform with:
+
+* React frontend
+* Python FastAPI backend
+* PostgreSQL + psycopg2
+* LangChain
+* LangGraph
+* Multi-LLM orchestration
+* Sarvam AI voice integration
+* Real-time AI interviewer
+* Resume intelligence
+* Dynamic adaptive interview engine
+* Real-time answer evaluation
+* Voice analytics
+* Company-specific interview simulation
+
+The platform must help users crack real AI/ML/GenAI/Data Science/Python interviews.
+
+The platform must simulate real interview environments for:
+
+* Google
+* Microsoft
+* Amazon
+* OpenAI
+* NVIDIA
+* Meta
+* Infosys
+* TCS
+* Wipro
+* Accenture
+* Deloitte
+* Cognizant
+* IBM
+* Oracle
+* Capgemini
+* CSM Technologies
+
+
+Set language for SarvamAI by dropdown 
+
+The system must dynamically adapt questions based on:
+
+* Selected technologies
+* Skills
+* Resume
+* Experience
+* Previous answers
+* Confidence
+* Weakness detection
+* Company interview style
+
+---
+
+# PRIMARY OBJECTIVE
+
+Create an intelligent AI Interview Platform where:
+
+1. User configures interview preferences
+2. User uploads resume
+3. AI analyzes resume
+4. AI generates dynamic interview questions
+5. Sarvam AI speaks questions naturally
+6. User answers using voice/text
+7. AI evaluates answers in real time
+8. AI adapts difficulty dynamically
+9. AI generates interview analytics
+10. AI predicts hiring readiness
+
+---
+
+# MANDATORY TECH STACK
+
+# FRONTEND
+
+Use:
+
+* React.js
+* TypeScript
+* TailwindCSS
+* Framer Motion
+* React Router
+* Axios
+* Zustand or Context API
+* WebSocket
+* Recharts
+* MediaRecorder API
+* SpeechRecognition API
+
+Frontend requirements:
+
+* Modern AI-themed UI
+* Dark mode
+* Fully responsive
+* Animated transitions
+* Real-time updates
+* Voice waveform visualization
+* AI avatar interviewer
+* Live analytics
+* Enterprise-grade UI
+
+---
+
+# BACKEND
+
+Use:
+
+* Python
+* FastAPI
+* psycopg2
+* PostgreSQL
+* LangChain
+* LangGraph
+* JWT Authentication
+* WebSocket
+* Async APIs
+* Redis (optional)
+* Celery (optional)
+
+Architecture must be:
+
+* Modular
+* Scalable
+* Production-ready
+* Service-oriented
+
+---
+
+# AI/LLM SUPPORT
+
+Support:
+
+* Claude
+* OpenAI
+* Gemini
+* Groq
+* Ollama
+
+System must support dynamic model switching.
+
+---
+
+# SARVAM AI INTEGRATION (MANDATORY)
+
+Integrate Sarvam AI for:
+
+* AI voice interviewer
+* Question narration
+* Real-time speech synthesis
+* Indian English accent support
+* Human-like interview interaction
+
+Features:
+
+* AI interviewer speaks every question
+* Dynamic voice response
+* Voice interruption handling
+* Natural pauses
+* Real-time TTS streaming
+* AI interviewer personality tone
+
+Examples:
+
+* Friendly interviewer voice
+* Strict FAANG interviewer voice
+* HR interviewer tone
+* Technical architect tone
+
+---
+
+# APPLICATION FLOW
+
+The platform contains 4 major pages.
+
+---
+
+# PAGE 1 — INTERVIEW CONFIGURATION
+
+Create a modern enterprise-level form.
+
+IMPORTANT:
+ALL selected values MUST later bind dynamically into the LLM prompts.
+
+Store globally using Zustand or Context API.
+
+---
+
+# PAGE 1 FIELDS
+
+## Technology Selection (Multi Select)
+
+Options:
+
+* Python
+* SQL
+* AI
+* Machine Learning
+* Deep Learning
+* NLP
+* Generative AI
+* LangChain
+* LangGraph
+* FastAPI
+* Django
+* TensorFlow
+* PyTorch
+* Computer Vision
+* Data Science
+* Transformers
+* CNN
+* RNN
+* OpenCV
+* MLOps
+* LLM
+* RAG
+* Vector Database
+
+---
+
+## Primary Skills
+
+Tag input
+
+---
+
+## Secondary Skills
+
+Tag input
+
+---
+
+## Years of Experience
+
+Dropdown:
+
+* Fresher
+* 0-1
+* 1-3
+* 3-5
+* 5+
+
+---
+
+## Interview Difficulty
+
+Options:
+
+* Easy
+* Medium
+* Hard
+* FAANG
+* Research Level
+
+---
+
+## Number of Questions
+
+Slider/input
+
+---
+
+## Total Interview Time
+
+Minutes selector
+
+---
+
+## Question Types
+
+Multi-select:
+
+* Coding
+* Theory
+* Project-based
+* Resume-based
+* Scenario-based
+* SQL
+* Architecture
+* System Design
+* Debugging
+* AI/ML
+* GenAI
+* Deep Learning
+* Behavioral
+* HR
+
+---
+
+## Self Validation Cutoff
+
+Slider:
+0–100%
+
+If answer score < cutoff:
+mark as weak answer.
+
+---
+
+## Company Selection
+
+Provide:
+
+* Dropdown
+* Text input
+
+Include MNC companies:
+
+* Google
+* Microsoft
+* Amazon
+* OpenAI
+* NVIDIA
+* Meta
+* Apple
+* Netflix
+* IBM
+* Oracle
+* Infosys
+* TCS
+* Wipro
+* Deloitte
+* Accenture
+* Capgemini
+* Cognizant
+* CSM Technologies
+
+IMPORTANT:
+Interview style MUST adapt dynamically.
+
+Examples:
+
+* Google → DSA + deep reasoning
+* OpenAI → Transformers + RAG + LLM architecture
+* NVIDIA → Deep Learning + CUDA + CV
+* Infosys → Fundamentals + projects
+
+---
+
+## Interview Mode
+
+Options:
+
+* Voice
+* Text
+* Hybrid
+
+---
+
+## AI Interviewer Personality
+
+Options:
+
+* Friendly
+* Strict
+* FAANG Interviewer
+* Technical Architect
+* HR Interviewer
+
+---
+
+## Webcam Monitoring Toggle
+
+Enable:
+
+* Face detection
+* Attention tracking
+* Anti-cheating
+
+---
+
+## Voice Analytics Toggle
+
+Enable:
+
+* Confidence tracking
+* Fillers detection
+* Communication scoring
+
+---
+
+## NEXT BUTTON
+
+Save configuration globally.
+
+Navigate to Page 2.
+
+---
+
+# PAGE 2 — RESUME ANALYSIS
+
+Allow:
+
+* PDF upload
+* DOCX upload
+
+Backend must:
+
+* Parse resume
+* Extract structured information
+* Analyze AI readiness
+
+---
+
+# RESUME EXTRACTION REQUIREMENTS
+
+Extract:
+
+* Skills
+* Technologies
+* Frameworks
+* AI tools
+* Databases
+* Projects
+* Certifications
+* GitHub
+* LinkedIn
+* Experience
+* Education
+* Research papers
+
+---
+
+# RESUME ANALYTICS
+
+Generate:
+
+* ATS score
+* Strong areas
+* Weak areas
+* Missing skills
+* AI readiness
+* ML readiness
+* GenAI readiness
+* Interview focus prediction
+
+---
+
+# PAGE 2 BUTTONS
+
+* Analyze Resume
+* Ready To Start
+
+---
+
+# PAGE 3 — INTERVIEW SUMMARY PAGE
+
+IMPORTANT:
+Before starting interview show ALL selected values because these values become prompt context.
+
+---
+
+# DISPLAY SUMMARY
+
+## Selected Technologies
+
+## Primary Skills
+
+## Secondary Skills
+
+## Experience
+
+## Difficulty
+
+## Company Name
+
+## Total Questions
+
+## Total Time
+
+## Question Types
+
+## Interview Personality
+
+## Resume Summary
+
+## Extracted Skills
+
+## Weak Areas
+
+## Strong Areas
+
+## ATS Score
+
+---
+
+# PROMPT CONTEXT SECTION
+
+Display:
+“What AI interviewer knows about candidate”
+
+Include:
+
+* Key skills
+* Weak skills
+* Strong skills
+* Interview focus areas
+* Company interview expectations
+
+---
+
+# START INTERVIEW BUTTON
+
+Creates interview session.
+
+---
+
+# PAGE 4 — LIVE AI INTERVIEW ENGINE
+
+This is the core interview system.
+
+---
+
+# LIVE INTERVIEW UI
+
+## LEFT PANEL
+
+Show:
+
+* AI interviewer avatar
+* Current question
+* Question number
+* Timer
+* Difficulty
+* Company interview style
+
+---
+
+## CENTER PANEL
+
+Answer area:
+
+* Text input
+* Voice recording
+* Live transcription
+
+---
+
+## RIGHT PANEL
+
+Real-time analytics:
+
+* Answer score %
+* Keyword detection
+* Expected concepts
+* Voice clarity
+* Confidence
+* Fillers
+* Pass/fail indicator
+* AI evaluation meter
+
+---
+
+# BOTTOM CONTROLS
+
+Buttons:
+
+* Start Recording
+* Stop Recording
+* Submit Answer
+* Skip Question
+* End Interview
+
+---
+
+# SARVAM AI INTERVIEW FLOW
+
+For every question:
+
+1. LLM generates question
+2. Sarvam AI converts question to speech
+3. AI interviewer speaks naturally
+4. User answers via voice/text
+5. Speech converted to text
+6. LLM evaluates answer
+7. Difficulty adapts dynamically
+
+---
+
+# MULTI-LLM NODE ARCHITECTURE
+
+Use multiple intelligent LLM nodes.
+
+---
+
+# NODE 1 — CONFIG ANALYZER
+
+Purpose:
+Convert Page 1 inputs into interview strategy.
+
+---
+
+# NODE 1 PROMPT
+
+```text
+You are a Senior AI Interview Strategist.
+
+Analyze candidate interview preferences.
+
+Generate:
+- Interview strategy
+- Difficulty mapping
+- Skill priority
+- Question distribution
+- Company interview style
+- Real-world focus areas
+- Expected answer depth
+
+Return STRICT JSON only.
+
+Candidate Configuration:
+{page1_inputs}
+```
+
+---
+
+# NODE 2 — RESUME ANALYZER
+
+Purpose:
+Extract structured resume intelligence.
+
+---
+
+# NODE 2 PROMPT
+
+```text
+You are an advanced ATS and AI resume analyzer.
+
+Analyze the resume deeply.
+
+Extract:
+- Skills
+- AI/ML tools
+- Programming languages
+- Frameworks
+- Databases
+- Cloud tools
+- Projects
+- Certifications
+- Achievements
+- Education
+- Experience
+
+Also identify:
+- Strong areas
+- Weak areas
+- Missing fundamentals
+- Interview focus areas
+- Resume risks
+- Fake/buzzword indicators
+
+Return STRICT JSON only.
+
+Resume:
+{resume_text}
+```
+
+---
+
+# NODE 3 — QUESTION GENERATOR
+
+Purpose:
+Generate adaptive interview questions.
+
+---
+
+# NODE 3 PROMPT
+
+```text
+You are a Senior FAANG AI interviewer.
+
+Generate realistic interview questions.
+
+Use:
+- Page 1 configuration
+- Resume analysis
+- Company style
+- Experience level
+- Previous answers
+- Weakness detection
+
+Question types:
+- Coding
+- AI/ML
+- Deep Learning
+- Transformers
+- GenAI
+- SQL
+- Resume projects
+- System Design
+- Architecture
+- Scenario-based
+- Debugging
+
+Rules:
+- One question at a time
+- Adaptive difficulty
+- Real-world implementation focus
+- No repeated questions
+- Ask dynamic follow-up questions
+
+Return STRICT JSON:
+{
+  "question": "",
+  "difficulty": "",
+  "expected_keywords": [],
+  "expected_concepts": [],
+  "ideal_answer_summary": "",
+  "followups": [],
+  "evaluation_criteria": []
+}
+
+Page1:
+{page1_inputs}
+
+Resume Analysis:
+{resume_analysis}
+
+Previous Answers:
+{previous_answers}
+```
+
+---
+
+# NODE 4 — ANSWER EVALUATOR
+
+Purpose:
+Evaluate answers in real time.
+
+---
+
+# NODE 4 PROMPT
+
+```text
+You are an expert AI technical evaluator.
+
+Evaluate the candidate answer.
+
+Analyze:
+- Technical correctness
+- AI/ML accuracy
+- Coding logic
+- Communication
+- Confidence
+- Architecture understanding
+- Real-world applicability
+
+Calculate:
+- Score %
+- Pass/fail
+- Missing concepts
+- Hallucination risk
+- Improvement suggestions
+- Confidence score
+- Next difficulty
+
+Return STRICT JSON:
+{
+  "score": 0,
+  "pass": true,
+  "confidence": 0,
+  "technical_depth": 0,
+  "communication_score": 0,
+  "missing_keywords": [],
+  "good_points": [],
+  "weak_points": [],
+  "improvements": [],
+  "hallucination_risk": "",
+  "next_difficulty": ""
+}
+
+Question:
+{question}
+
+Expected:
+{expected_answer}
+
+Candidate Answer:
+{candidate_answer}
+```
+
+---
+
+# NODE 5 — VOICE ANALYTICS
+
+Purpose:
+Evaluate speech quality.
+
+---
+
+# NODE 5 PROMPT
+
+```text
+Analyze candidate speech.
+
+Evaluate:
+- Speech clarity
+- Confidence
+- Fillers
+- Technical fluency
+- Communication quality
+- Professionalism
+
+Return STRICT JSON:
+{
+  "clarity_score": 0,
+  "confidence_score": 0,
+  "filler_words": [],
+  "professionalism_score": 0,
+  "communication_feedback": []
+}
+```
+
+---
+
+# NODE 6 — FINAL REPORT GENERATOR
+
+Purpose:
+Generate detailed analytics report.
+
+---
+
+# NODE 6 PROMPT
+
+```text
+Generate a complete AI interview report.
+
+Include:
+- Overall score
+- Technical score
+- AI/ML readiness
+- GenAI readiness
+- Coding readiness
+- Communication score
+- Resume strength
+- Strong areas
+- Weak areas
+- Hiring probability
+- Company readiness
+- Improvement roadmap
+- Recommended learning path
+- Final verdict
+
+Return STRICT JSON only.
+```
+
+---
+
+# REAL-TIME FEATURES
+
+Implement:
+
+* WebSocket streaming
+* Live scoring
+* Real-time keyword extraction
+* Speech-to-text
+* Dynamic difficulty adaptation
+* Voice confidence tracking
+* Webcam monitoring
+* Face detection
+* Attention tracking
+* Anti-cheating
+* Live Sarvam AI voice streaming
+
+---
+
+# ANALYTICS DASHBOARD
+
+Show:
+
+* Question-wise scores
+* Skill-wise scores
+* AI/ML radar chart
+* Communication graph
+* Confidence graph
+* Hiring probability
+* Resume match %
+* Strong skills
+* Weak skills
+* Pass/fail prediction
+
+---
+
+# DATABASE DESIGN
+
+Use PostgreSQL with psycopg2.
+
+Tables:
+
+* users
+* resumes
+* interviews
+* interview_sessions
+* questions
+* answers
+* analytics
+* voice_metrics
+* reports
+
+Generate:
+
+* SQL schema
+* Relationships
+* Constraints
+* Indexes
+
+---
+
+# BACKEND REQUIREMENTS
+
+Generate:
+
+* FastAPI backend
+* API routes
+* JWT authentication
+* WebSocket handlers
+* Resume APIs
+* Interview APIs
+* Analytics APIs
+* LangGraph workflow
+* Prompt orchestration layer
+* Logging
+* Exception handling
+* Modular architecture
+
+---
+
+# LANGGRAPH FLOW
+
+START
+→ Config Analyzer
+→ Resume Analyzer
+→ Question Generator
+→ Sarvam AI Voice Layer
+→ Live Interview Loop
+→ Answer Evaluator
+→ Difficulty Adapter
+→ Final Report
+→ END
+
+---
+
+# SECURITY
+
+Implement:
+
+* JWT auth
+* Rate limiting
+* Secure uploads
+* Input sanitization
+* API protection
+* WebSocket security
+
+---
+
+# OUTPUT REQUIREMENTS
+
+Generate:
+
+1. Full React frontend
+2. Full FastAPI backend
+3. PostgreSQL schema
+4. psycopg2 integration
+5. LangGraph workflow
+6. API contracts
+7. Folder structure
+8. Docker setup
+9. README
+10. Deployment guide
+11. Environment variables
+12. Testing strategy
+13. Production architecture
+14. Prompt orchestration layer
+15. Sarvam AI integration layer
+
+All code must be:
+
+* Production-ready
+* Enterprise scalable
+* Modular
+* Fully explained
+* Clean architecture based
+* Real-world deployable
