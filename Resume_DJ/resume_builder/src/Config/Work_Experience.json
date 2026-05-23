@@ -1,0 +1,41 @@
+{
+  "Company_1": {
+    "Company Name": "CSM Technologies Pvt Ltd",
+    "Location": "Bhubaneswar, Odisha",
+    "Mode": "Hybrid",
+    "From": "Jul 2025",
+    "To": "Present",
+    "Description": [
+      "Architected and deployed 2 RAG-based chatbot applications using LangChain and LangGraph, reducing manual query resolution time by 60% for enterprise clients.",
+      "Engineered Generative AI and Agentic AI workflows automating 5+ business processes, cutting operational overhead by 40%.",
+      "Built and launched 3 scalable REST APIs using FastAPI integrated with React and Angular frontends, supporting 1,000+ concurrent users.",
+      "Improved UI response time by 35% through responsive design optimization and real-time interaction handling."
+    ]
+  },
+  "Company_2": {
+    "Company Name": "Zentron Labs Pvt Ltd",
+    "Location": "Bangalore, Karnataka",
+    "Mode": "Hybrid",
+    "From": "Jul 2022",
+    "To": "Feb 2024",
+    "Description": [
+      "Trained and deployed ML models for mango ripeness classification achieving 91% accuracy across 10,000+ samples using Scikit-learn and supervised learning.",
+      "Executed ETL pipelines processing 50,000+ records daily using Python and Excel, reducing data preparation time by 45%.",
+      "Designed and integrated 4 software modules into production systems, improving overall processing efficiency by 30%.",
+      "Created 10+ interactive dashboards and reports in Tableau enabling data-driven business decisions for 3 product teams."
+    ]
+  },
+  "Company_3": {
+    "Company Name": "Multiple Internship Experience",
+    "Location": "Remote",
+    "Mode": "Remote",
+    "From": "Nov 2024",
+    "To": "Mar 2025",
+    "Description": [
+      "Constructed NLP classification models using TF-IDF, Logistic Regression, SVM, and Naive Bayes achieving 88% accuracy on real-world text datasets.",
+      "Delivered 3 GUI-based desktop applications using Python Tkinter, reducing manual data entry effort by 50% for end users.",
+      "Analyzed 5+ real-world datasets for prediction and classification tasks, producing reports that improved stakeholder decision-making.",
+      "Enhanced ML model performance by 15% through systematic feature engineering and third-party tool integration."
+    ]
+  }
+}

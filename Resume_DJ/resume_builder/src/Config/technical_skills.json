@@ -1,0 +1,9 @@
+{
+  "Languages": ["Python", "Java", "C", "C++", "SQL"],
+  "Frameworks & Libraries": ["FastAPI", "React.js", "Angular", "Django", "LangChain", "LangGraph"],
+  "AI & ML": ["Machine Learning", "Deep Learning", "NLP", "TF-IDF", "Scikit-learn", "Model Optimization"],
+  "Generative AI": ["RAG", "LLMs", "Agentic AI", "Prompt Engineering"],
+  "Databases": ["MySQL", "MongoDB", "SQLite"],
+  "Tools & Platforms": ["Git", "Docker", "Airflow", "Linux", "Tableau", "Excel"],
+  "Core Concepts": ["ETL Pipelines", "Data Analysis", "REST APIs", "System Design", "Data Structures"]
+}
