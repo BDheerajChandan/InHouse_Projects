@@ -1,0 +1,357 @@
+/* groom_profile.css */
+
+/* Hosted by banner */
+.hosted-by-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2100;
+  text-align: center;
+  padding: 5px 12px;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.hosted-by-banner strong {
+  color: var(--marriage-gold);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ── Page ── */
+.gp-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #e8f4ff 0%, #f0f8ff 50%, #ffffff 100%);
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* ── Hero ── */
+.gp-hero {
+  position: relative;
+  background: linear-gradient(160deg, #1a6abf 0%, #2a80d8 45%, #4aa8f0 100%);
+  padding: 56px 24px 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Subtle dot pattern */
+.gp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Wave bottom */
+.gp-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -26px;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: linear-gradient(160deg, #e8f4ff 0%, #f0f8ff 50%, #ffffff 100%);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+/* Ornamental corners */
+.gp-hero-ornament {
+  position: absolute;
+  font-size: 18px;
+  color: rgba(255,255,255,0.25);
+  pointer-events: none;
+}
+.gp-hero-ornament.top-left    { top: 20px; left: 24px; }
+.gp-hero-ornament.top-right   { top: 20px; right: 24px; }
+.gp-hero-ornament.bottom-left  { bottom: 34px; left: 24px; }
+.gp-hero-ornament.bottom-right { bottom: 34px; right: 24px; }
+
+/* Avatar ring */
+.gp-hero-avatar-ring {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #ffffff, #c0e0ff, #ffffff);
+  box-shadow: 0 8px 36px rgba(10, 60, 160, 0.3);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gp-hero-avatar-ring:hover {
+  transform: scale(1.06);
+  box-shadow: 0 14px 48px rgba(10, 80, 200, 0.4);
+}
+
+.gp-hero-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 3px solid #ffffff;
+}
+
+.gp-hero-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+  font-weight: 700;
+  color: #ffffff;
+  border: 3px solid #ffffff;
+}
+
+.gp-avatar-hover-label {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(10, 40, 120, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.3s, background 0.3s;
+}
+
+.gp-hero-avatar-ring:hover .gp-avatar-hover-label {
+  opacity: 1;
+  background: rgba(10, 40, 120, 0.48);
+}
+
+/* Hero text */
+.gp-hero-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.gp-hero-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+.gp-hero-name {
+  font-size: 40px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 12px rgba(10, 40, 120, 0.3);
+  line-height: 1.15;
+}
+
+.gp-hero-surname {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+  letter-spacing: 0.08em;
+  font-family: 'Segoe UI', sans-serif;
+  font-style: italic;
+}
+
+.gp-hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.gp-pill {
+  background: rgba(255,255,255,0.18);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.gp-pill:hover {
+  background: rgba(255,255,255,0.32);
+  border-color: rgba(255,255,255,0.7);
+}
+
+/* ── Profile Full View Modal ── */
+.gp-profile-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 20, 60, 0.88);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  animation: gp-fade-in 0.22s ease;
+}
+
+.gp-profile-modal-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: gp-scale-in 0.25s ease;
+}
+
+.gp-profile-modal-toolbar {
+  display: flex;
+  align-self: flex-end;
+}
+
+.gp-profile-close-btn {
+  background: rgba(200,50,50,0.22);
+  border: 1.5px solid rgba(255,120,120,0.45);
+  color: #ffb0b0;
+  padding: 8px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.gp-profile-close-btn:hover {
+  background: rgba(200,50,50,0.5);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.gp-profile-modal-img {
+  max-width: 80vw;
+  max-height: 76vh;
+  border-radius: 18px;
+  object-fit: contain;
+  display: block;
+  border: 2px solid rgba(100,180,255,0.3);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+}
+
+.gp-profile-modal-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #c0e0ff;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+/* ── Main ── */
+.gp-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 52px 20px 28px;
+}
+
+/* ── Divider ── */
+.gp-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 28px;
+}
+
+.gp-divider-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(to right, transparent, #90c4f0, transparent);
+  border-radius: 2px;
+}
+
+.gp-divider-icon {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1a6abf;
+  white-space: nowrap;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Footer ── */
+.gp-footer {
+  text-align: center;
+  padding: 28px 24px;
+  background: linear-gradient(135deg, #1a6abf, #2a80d8);
+  margin-top: 20px;
+}
+
+.gp-footer p {
+  margin: 0 0 5px;
+  font-size: 14px;
+  font-family: 'Georgia', serif;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.gp-footer-sub {
+  font-size: 11px !important;
+  color: rgba(255,255,255,0.55) !important;
+  letter-spacing: 0.07em !important;
+  font-family: 'Segoe UI', sans-serif !important;
+}
+
+/* ── Animations ── */
+@keyframes gp-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes gp-scale-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Responsive ── */
+@media (min-width: 640px) {
+  .gp-hero {
+    flex-direction: row;
+    text-align: left;
+    padding: 64px 56px 76px;
+    gap: 36px;
+  }
+  .gp-hero-text  { align-items: flex-start; }
+  .gp-hero-pills { justify-content: flex-start; }
+  .gp-hero-name  { font-size: 48px; }
+  .gp-hero-avatar-ring { width: 168px; height: 168px; }
+}
+
+@media (max-width: 480px) {
+  .gp-hero-name { font-size: 28px; }
+  .gp-main      { padding: 38px 14px 16px; }
+}

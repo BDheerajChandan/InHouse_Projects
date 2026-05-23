@@ -1,0 +1,419 @@
+/* groom_images.css */
+
+/* ── Section ── */
+.gi-section {
+  padding: 0 0 48px;
+}
+
+.gi-sliders-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* ── Slider Card ── */
+.gi-slider-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid #b8d8f8;
+  background: #ffffff;
+  box-shadow: 0 4px 18px rgba(30, 100, 200, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.gi-slider-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(30, 120, 220, 0.2);
+  border-color: #4a90e2;
+}
+
+.gi-slider-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background: #dceeff;
+}
+
+.gi-slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 0.8s ease, filter 0.8s ease;
+}
+
+.gi-slide-img.active {
+  opacity: 1;
+  filter: blur(6px); /* blurred by default until hovered */
+}
+
+/* Remove blur on card hover */
+.gi-slider-card:hover .gi-slide-img.active {
+  filter: blur(0px);
+}
+
+/* Overlay — always visible, click triggers gallery */
+.gi-slider-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 60, 140, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.gi-slider-card:hover .gi-slider-overlay {
+  background: rgba(10, 60, 140, 0.32);
+}
+
+.gi-slider-view-label {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  background: rgba(30, 100, 220, 0.65);
+  border: 1.5px solid rgba(180, 220, 255, 0.5);
+  padding: 10px 22px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gi-slider-card:hover .gi-slider-view-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gi-slider-footer {
+  padding: 14px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: linear-gradient(135deg, #f0f8ff, #e8f4ff);
+  border-top: 1px solid #c8e0f8;
+}
+
+.gi-slider-section-label {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #1a6abf;
+}
+
+.gi-slider-desc {
+  font-size: 13px;
+  color: #3a7abf;
+  font-weight: 500;
+}
+
+.gi-slider-dots {
+  display: flex;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.gi-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a8d0f0;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.gi-dot.active {
+  background: #1a6abf;
+  transform: scale(1.5);
+}
+
+/* ── Gallery Backdrop ── */
+.gi-gallery-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 40, 100, 0.55);
+  z-index: 100;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  animation: gi-fade-in 0.25s ease;
+  backdrop-filter: blur(3px);
+}
+
+.gi-gallery-panel {
+  background: #f4faff;
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gi-gallery-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #1a6abf, #3a9ae8);
+  border-bottom: 1px solid #b8d8f8;
+  flex-shrink: 0;
+}
+
+.gi-gallery-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gi-close-btn {
+  background: rgba(255,255,255,0.2);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  color: #ffffff;
+  padding: 7px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.gi-close-btn:hover {
+  background: rgba(255,255,255,0.35);
+  transform: scale(1.04);
+}
+
+.gi-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  background: #f0f8ff;
+}
+
+.gi-gallery-item {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.25s ease;
+}
+
+.gi-gallery-item:hover {
+  transform: translateY(-4px);
+}
+
+.gi-gallery-img-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: #dceeff;
+  border: 1.5px solid #b8d8f8;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gi-gallery-item:hover .gi-gallery-img-wrap {
+  border-color: #4a90e2;
+  box-shadow: 0 8px 24px rgba(30, 100, 200, 0.25);
+}
+
+.gi-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gi-gallery-item:hover .gi-gallery-img {
+  transform: scale(1.07);
+}
+
+.gi-gallery-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 50, 120, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.3s;
+}
+
+.gi-gallery-item:hover .gi-gallery-img-overlay {
+  background: rgba(10, 50, 120, 0.45);
+}
+
+.gi-gallery-caption {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2a6aaf;
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.gi-gallery-item:hover .gi-gallery-caption {
+  color: #1a4a8f;
+}
+
+/* ── Modal ── */
+.gi-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 20, 60, 0.88);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: gi-fade-in 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+
+.gi-modal-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 94vw;
+  animation: gi-scale-in 0.25s ease;
+}
+
+/* Toolbar */
+.gi-modal-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(180,220,255,0.25);
+  border-radius: 999px;
+  padding: 6px 12px;
+  backdrop-filter: blur(8px);
+}
+
+.gi-modal-tool-btn {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(180,220,255,0.3);
+  color: #e0f0ff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.gi-modal-tool-btn:hover {
+  background: rgba(255,255,255,0.3);
+  color: #fff;
+  transform: scale(1.07);
+}
+
+.gi-zoom-level {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c0e0ff;
+  min-width: 44px;
+  text-align: center;
+}
+
+.gi-modal-close-btn {
+  background: rgba(200,50,50,0.25);
+  border-color: rgba(255,120,120,0.4);
+  color: #ffb0b0;
+}
+
+.gi-modal-close-btn:hover {
+  background: rgba(200,50,50,0.5);
+  color: #fff;
+}
+
+/* Image container */
+.gi-modal-img-container {
+  width: 82vw;
+  max-height: 72vh;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1.5px solid rgba(100,180,255,0.25);
+  background: rgba(5,20,60,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+}
+
+.gi-modal-img {
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+  will-change: transform;
+  touch-action: none;
+}
+
+/* Footer */
+.gi-modal-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.gi-modal-desc {
+  font-size: 15px;
+  font-weight: 600;
+  color: #c0e0ff;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.gi-modal-hint {
+  font-size: 11px;
+  color: rgba(160,210,255,0.55);
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+/* ── Animations ── */
+@keyframes gi-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes gi-scale-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .gi-slider-img-wrap { height: 240px; }
+  .gi-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+    padding: 14px;
+  }
+  .gi-modal-img-container { width: 96vw; }
+  .gi-modal-toolbar { gap: 4px; padding: 5px 8px; }
+  .gi-modal-tool-btn { padding: 5px 10px; font-size: 12px; }
+}
