@@ -21,12 +21,12 @@ export default function Education() {
                 <span className="value-text">{edu["Location"]}</span>
               </>
             )}
-          </div>
+          {/* </div>
 
-          <div className="entry-meta">
+          <div className="entry-meta"> */}
             {edu["From"] && edu["To"] && (
               <>
-                <span className="key-text">Duration: </span>
+                <span className="key-text">| </span>
                 <span className="value-text">{edu["From"]} – {edu["To"]}</span>
                 &nbsp;&nbsp;
               </>

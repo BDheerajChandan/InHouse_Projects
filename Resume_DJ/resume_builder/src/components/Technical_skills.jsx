@@ -10,7 +10,7 @@ export default function TechnicalSkills() {
       <h2 className="section-title">Technical Skills</h2>
 
       {entries.map(([category, skills]) => (
-        <div key={category} className="entry-meta skill-row">
+        <div key={category} className="entry-meta skill-row" style={{ lineHeight: "1.1" }}>
           <span className="key-text">{category}: </span>
           <span className="value-text">
             {Array.isArray(skills) ? skills.join(", ") : skills}

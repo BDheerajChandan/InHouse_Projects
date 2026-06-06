@@ -10,7 +10,11 @@ export default function Projects() {
       <h2 className="section-title">Projects</h2>
 
       {entries.map(([key, project]) => (
-        <article key={key} className="entry-block">
+        <article
+          key={key}
+          className="entry-block"
+          style={{ marginBottom: "10px" }}
+        >
           <div className="entry-header">
             <span className="key-text">{project["Title"]}</span>
             {project["Year"] && (
@@ -22,7 +26,14 @@ export default function Projects() {
           </div>
 
           {project["Link"] && (
-            <div>
+            // <div style={{ margin: 0, padding: 0 }}>
+            <div
+              style={{
+                margin: 0,
+                padding: 0,
+                lineHeight: "1.1"
+              }}
+            >
               <a
                 href={project["Link"]}
                 target="_blank"
@@ -35,7 +46,21 @@ export default function Projects() {
           )}
 
           {project["Description"] && (
-            <p className="value-text" style={{ marginTop: "2px" }}>
+            // <p
+            //   className="value-text"
+            //   style={{
+            //     margin: 0,
+            //     padding: 0
+            //   }}
+            // >
+            <p
+              className="value-text"
+              style={{
+                margin: 0,
+                padding: 0,
+                lineHeight: "1.2"
+              }}
+            >
               {project["Description"]}
             </p>
           )}

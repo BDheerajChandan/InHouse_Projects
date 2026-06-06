@@ -221,3 +221,22 @@ html, body {
     page-break-inside: avoid;
   }
 }
+
+.entry-header {
+  margin-bottom: 0;
+  line-height: 1.1;
+}
+
+.link-text {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.value-text {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  text-align: justify;
+}
