@@ -1,0 +1,32 @@
+{
+  "Company_1": {
+    "Company Name": "CSM Technologies Pvt Ltd",
+    "Location": "Bhubaneswar, Odisha",
+    "Mode": "Hybrid",
+    "From": "Jul 2025",
+    "To": "Present",
+    "Description": [
+      "Developed Generative AI and chatbot applications using LangChain, LangGraph, and LLMs.",
+      "Built RAG-based solutions with vector databases for intelligent document retrieval and question answering.",
+      "Designed AI-powered workflows and agentic AI systems for business process automation.",
+      "Developed scalable backend APIs using Python and FastAPI for AI applications.",
+      "Researched and adopted new AI technologies to improve application capabilities and efficiency."
+    ]
+  },
+  "Company_2": {
+    "Company Name": "Zentron Labs Pvt Ltd",
+    "Location": "Bangalore, Karnataka",
+    "Mode": "Hybrid",
+    "From": "Jan 2022",
+    "To": "Feb 2024",
+    "Description": [
+      "Collected, labeled, and analyzed fruit quality data based on physical characteristics and ripeness indicators to build datasets for Machine Learning model development.",
+      "Developed and trained supervised Machine Learning models using Python and Scikit-learn for automated fruit ripeness classification and quality assessment.",
+      "Performed data preprocessing, feature engineering, and model optimization to improve prediction accuracy and model reliability.",
+      "Automated data processing and reporting workflows using Python to support analysis, monitoring, and operational decision-making.",
+      "Collaborated with Computer Vision teams to integrate Machine Learning models into real-time image processing and fruit inspection systems.",
+      "Deployed AI-based solutions in production environments for automated quality control, enabling real-time classification using camera-based input systems.",
+      "Generated reports to support data-driven decision-making for product teams."
+    ]
+  }
+}

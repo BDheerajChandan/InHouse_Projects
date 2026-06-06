@@ -1,5 +1,5 @@
 // src/components/Work_experience.jsx
-import workData from "../Config/Work_Experience.json";
+import workData from "../Config/2_Work_Experience.json";
 
 export default function WorkExperience() {
   const entries = Object.entries(workData);

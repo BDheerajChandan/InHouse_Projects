@@ -12,8 +12,8 @@ import Achievements    from "./components/Achievements";
 
 // Config imports — used ONLY by the PDF generator
 import profileLinks    from "./Config/profile_links.json";
-import summaryData     from "./Config/summary.json";
-import workData        from "./Config/Work_Experience.json";
+import summaryData     from "./Config/1_summary.json";
+import workData        from "./Config/2_Work_Experience.json";
 import projectsData    from "./Config/projects_links.json";
 import skillsData      from "./Config/technical_skills.json";
 import educationData   from "./Config/education.json";

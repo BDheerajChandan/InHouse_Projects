@@ -1,6 +1,6 @@
 // src/components/Profile_heading.jsx
 import profileLinks from "../Config/profile_links.json";
-import summaryData  from "../Config/summary.json";
+import summaryData  from "../Config/1_summary.json";
 
 export default function ProfileHeading() {
   return (
