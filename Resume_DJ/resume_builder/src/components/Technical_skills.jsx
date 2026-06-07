@@ -1,5 +1,5 @@
 // src/components/Technical_skills.jsx
-import skillsData from "../Config/technical_skills.json";
+import skillsData from "../Config/4_technical_skills.json";
 
 export default function TechnicalSkills() {
   const entries = Object.entries(skillsData);
@@ -11,8 +11,8 @@ export default function TechnicalSkills() {
 
       {entries.map(([category, skills]) => (
         <div key={category} className="entry-meta skill-row" style={{ lineHeight: "1.1" }}>
-          <span className="key-text">{category}: </span>
-          <span className="value-text">
+          <span className="key-text" style={{ lineHeight: "1.1" }}>{category}: </span>
+          <span className="value-text" style={{ lineHeight: "1.1" }}>
             {Array.isArray(skills) ? skills.join(", ") : skills}
           </span>
         </div>

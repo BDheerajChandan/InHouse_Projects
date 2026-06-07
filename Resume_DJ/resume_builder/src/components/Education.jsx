@@ -1,5 +1,5 @@
 // src/components/Education.jsx
-import educationData from "../Config/education.json";
+import educationData from "../Config/5_education.json";
 
 export default function Education() {
   const entries = Object.entries(educationData);

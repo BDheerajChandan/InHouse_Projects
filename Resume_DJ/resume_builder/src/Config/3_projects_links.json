@@ -35,13 +35,13 @@
     "Title": "Python Data Ingestion and SQL Automation",
     "Link": "https://github.com/BDheerajChandan/CollegeProjects/tree/main/InHouse%20Projects/Python_SelfProjects/Database%20AutoCreation",
     "Year": "2023",
-    "Description": "mechanized end-to-end data ingestion and SQL schema creation, cutting manual database setup time by 80% and processing 20+ external data sources using Python ETL pipelines."
+    "Description": "Mechanized end-to-end data ingestion and SQL schema creation, cutting manual database setup time by 80% and processing 20+ external data sources using Python ETL pipelines."
   },
   "Project 7": {
     "Title": "Obstacle Detection using Ultrasonic Sensor",
     "Link": "https://github.com/BDheerajChandan/CollegeProjects/tree/main/MinorProject",
     "Year": "2022",
-    "Description": "Applied a real-time obstacle detection system using Arduino and ultrasonic sensors with 98% detection accuracy within a 4-meter range for autonomous navigation applications."
+    "Description": "Applied a real-time obstacle detection system using Arduino and ultrasonic sensors within a 4-meter range for autonomous navigation applications."
   },
   "Project 8": {
     "Title": "Gas and Smoke Detection System with GSM Alerts",

@@ -1,5 +1,5 @@
 // src/components/Projects.jsx
-import projectsData from "../Config/projects_links.json";
+import projectsData from "../Config/3_projects_links.json";
 
 export default function Projects() {
   const entries = Object.entries(projectsData);

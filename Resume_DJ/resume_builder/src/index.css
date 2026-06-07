@@ -69,7 +69,8 @@ html, body {
 
 /* ── Entry blocks ───────────────────────────────────────────── */
 .entry-block {
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
+  margin-bottom: 0;
 }
 
 .entry-header {
@@ -82,12 +83,18 @@ html, body {
 }
 
 .entry-meta {
-  margin-bottom: 2px;
-  line-height: 1.4;
+  /* margin-bottom: 2px;
+  line-height: 1.1; */
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
 }
 
 .skill-row {
-  margin-bottom: 3px;
+  /* margin-bottom: 3px; */
+  margin-bottom: 0;
+  line-height: 1.2;
 }
 
 .separator {
@@ -227,16 +234,31 @@ html, body {
   line-height: 1.1;
 }
 
-.link-text {
+/* .link-text {
   display: block;
   margin: 0;
   padding: 0;
   line-height: 1.1;
 }
+*/
 
-.value-text {
+.link-text {
+  display: block;
   margin: 0;
   padding: 0;
-  line-height: 1.2;
+  line-height: 1.1;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 9px;
+  font-style: italic;
+  color: #0a0a8a;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.value-text {
+  /* display: block; */
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
   text-align: justify;
 }

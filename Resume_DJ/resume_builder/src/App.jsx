@@ -14,11 +14,11 @@ import Achievements    from "./components/Achievements";
 import profileLinks    from "./Config/profile_links.json";
 import summaryData     from "./Config/1_summary.json";
 import workData        from "./Config/2_Work_Experience.json";
-import projectsData    from "./Config/projects_links.json";
-import skillsData      from "./Config/technical_skills.json";
-import educationData   from "./Config/education.json";
-import certData        from "./Config/certifications.json";
-import achievements    from "./Config/achievements.json";
+import projectsData    from "./Config/3_projects_links.json";
+import skillsData      from "./Config/4_technical_skills.json";
+import educationData   from "./Config/5_education.json";
+import certData        from "./Config/6_certifications.json";
+import achievements    from "./Config/7_achievements.json";
 
 import "./index.css";
 

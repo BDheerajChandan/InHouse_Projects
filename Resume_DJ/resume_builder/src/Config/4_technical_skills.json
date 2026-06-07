@@ -5,5 +5,6 @@
   "Generative AI": ["RAG", "LLMs", "Agentic AI", "Prompt Engineering"],
   "Databases": ["MySQL", "MongoDB", "SQLite"],
   "Tools & Platforms": ["Git", "Docker", "Airflow", "Linux", "Tableau", "Excel"],
-  "Core Concepts": ["ETL Pipelines", "Data Analysis", "REST APIs", "System Design", "Data Structures"]
+  "Core Concepts": ["ETL Pipelines", "Data Analysis", "REST APIs", "System Design", "Data Structures"],
+  "Spoken Languages": ["Telugu", "English", "Hindi", "Odia"]
 }

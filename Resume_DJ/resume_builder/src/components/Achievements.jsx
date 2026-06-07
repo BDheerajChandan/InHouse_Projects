@@ -1,5 +1,5 @@
 // src/components/Achievements.jsx
-import achievementsData from "../Config/achievements.json";
+import achievementsData from "../Config/7_achievements.json";
 
 export default function Achievements() {
   const isArray = Array.isArray(achievementsData);

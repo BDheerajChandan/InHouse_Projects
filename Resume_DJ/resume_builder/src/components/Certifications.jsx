@@ -1,5 +1,5 @@
 // src/components/Certifications.jsx
-import certData from "../Config/certifications.json";
+import certData from "../Config/6_certifications.json";
 
 export default function Certifications() {
   const entries = Object.entries(certData);
