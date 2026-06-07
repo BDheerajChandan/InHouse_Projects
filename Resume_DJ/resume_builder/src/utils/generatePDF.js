@@ -173,7 +173,14 @@ class PDFWriter {
 
   gap(mm = ENTRY_GAP) { this.y += mm; }
 
-  save(filename) { this.doc.save(filename); }
+  // save(filename) { this.doc.save(filename); }
+  save() {
+  const now = new Date();
+  const day   = String(now.getDate()).padStart(2, "0");
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const year  = now.getFullYear();
+  this.doc.save(`Dheeraj_Resume ${day}-${month}-${year}.pdf`);
+}
 }
 
 // ─── Main Export ──────────────────────────────────────────────────────────────
@@ -324,5 +331,7 @@ export function generateResumePDF({
     achievements.forEach(a => w.bullet(a));
   }
 
-  w.save("Dheeraj_Chandan_Resume.pdf");
+  // w.save("Dheeraj_Chandan_Resume.pdf");
+  w.save();
+
 }
