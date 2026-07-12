@@ -1,0 +1,247 @@
+/* src/App.css */
+.birthday-page {
+  position: relative;
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(10px, 3vw, 28px);
+  background: linear-gradient(150deg, var(--color-coral) 0%, var(--color-peach) 50%, var(--color-gold) 100%);
+}
+
+/* confetti */
+.confetti-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.confetti {
+  position: absolute;
+  top: -8%;
+  left: calc(var(--i) * 5.6%);
+  width: 7px;
+  height: 13px;
+  border-radius: 2px;
+  opacity: 0.85;
+  background: var(--color-cream);
+  transform: rotate(calc(var(--i) * 17deg));
+  animation: confetti-fall linear infinite;
+  animation-duration: calc(7s + (var(--i) * 0.45s));
+  animation-delay: calc(var(--i) * -0.6s);
+}
+
+.confetti:nth-child(3n+1) { background: var(--color-accent); }
+.confetti:nth-child(3n+2) { background: #ffffff; }
+.confetti:nth-child(4n) {
+  background: var(--color-ink);
+  opacity: 0.5;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  0%   { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.9; }
+  100% { transform: translateY(115vh) rotate(380deg); opacity: 0; }
+}
+
+/* card */
+.birthday-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1080px;
+  max-height: 92dvh;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 248, 240, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(58, 31, 43, 0.35);
+  overflow: hidden;
+}
+
+.image-section {
+  flex: 0 0 38%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(18px, 3vw, 36px);
+}
+
+.polaroid {
+  position: relative;
+  background: var(--color-cream);
+  padding: 14px 14px 28px;
+  border-radius: 6px;
+  box-shadow: 0 18px 35px rgba(58, 31, 43, 0.35);
+  transform: rotate(-3deg);
+  width: 100%;
+  max-width: 300px;
+}
+
+.tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 90px;
+  height: 28px;
+  background: linear-gradient(90deg, rgba(255, 217, 61, 0.85), rgba(255, 213, 107, 0.65));
+  box-shadow: 0 4px 10px rgba(58, 31, 43, 0.25);
+}
+
+.hero-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+.content-section {
+  flex: 1;
+  height: 100%;
+  max-height: 92dvh;
+  padding: clamp(20px, 4vw, 48px) clamp(20px, 4vw, 48px) clamp(20px, 4vw, 48px) 0;
+  color: var(--color-cream);
+  text-shadow: 1px 1px 6px rgba(58, 31, 43, 0.55);
+  overflow-y: auto;          /* scrolls internally if content is tall */
+  scrollbar-width: none;     /* Firefox: hide scrollbar */
+  -ms-overflow-style: none;  /* IE/Edge: hide scrollbar */
+}
+
+.content-section::-webkit-scrollbar {
+  display: none; /* Chrome/Safari: hide scrollbar */
+}
+
+.top-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+.main-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.name-script {
+  display: inline-block;
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: 1.4em;
+  color: var(--color-accent);
+  text-shadow: 2px 2px 0 rgba(58, 31, 43, 0.3);
+  transform: rotate(-2deg);
+}
+
+.message {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+  line-height: 1.7;
+  margin-bottom: 22px;
+  max-width: 46ch;
+}
+
+.wish-box {
+  position: relative;
+  background: rgba(255, 248, 240, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px 16px 16px 16px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  font-family: var(--font-body);
+  font-size: clamp(0.78rem, 1.3vw, 0.92rem);
+  line-height: 1.6;
+}
+
+.wish-btn {
+  border: none;
+  outline: none;
+  padding: 13px 30px;
+  border-radius: 30px;
+  background: var(--color-cream);
+  color: var(--color-coral);
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.wish-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* tablet */
+@media (max-width: 900px) {
+  .birthday-card {
+    flex-direction: column;
+    max-height: 95dvh;
+  }
+
+  .image-section {
+    flex: 0 0 auto;
+    padding: 20px 20px 0;
+  }
+
+  .polaroid {
+    max-width: 220px;
+  }
+
+  .content-section {
+    padding: 16px 22px 26px;
+    text-align: center;
+  }
+
+  .message {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .name-script {
+    transform: none;
+  }
+}
+
+/* small mobile */
+@media (max-width: 480px) {
+  .birthday-page {
+    padding: 8px;
+  }
+
+  .birthday-card {
+    border-radius: 22px;
+  }
+
+  .polaroid {
+    max-width: 170px;
+    padding: 10px 10px 20px;
+  }
+
+  .main-title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+
+  .wish-box {
+    font-size: 0.78rem;
+  }
+}
