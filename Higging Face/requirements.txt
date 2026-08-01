@@ -1,0 +1,2 @@
+sentence-transformers==5.5.1
+sentence-transformers[image]
