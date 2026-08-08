@@ -6,6 +6,9 @@
     "From": "Jul 2025",
     "To": "Present",
     "Description": [
+      "Worked with AI agents, conversational memory, and stateful workflows using LangChain and LangGraph.",
+      "Developed QA Chatbots and conversational AI solutions using contextual retrieval and LLM-based response generation.",
+      "Designed RAG pipelines involving document processing, text chunking, embeddings, retrieval, and context-aware response generation.",
       "Enhanced Generative AI and chatbot applications using LangChain, LangGraph, and LLMs.",
       "Built RAG-based solutions with vector databases for intelligent document retrieval and question answering.",
       "Designed AI-powered workflows and agentic AI systems for business process automation.",
