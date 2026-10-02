@@ -1,3 +1,4 @@
+# requirements.txt
 
 fastapi==0.136.1
 uvicorn==0.46.0
@@ -26,20 +27,18 @@ unstructured[odt]
 python-docx == 1.2.0
 docx2txt==0.9
 
-
-
 # PostgreSQL async driver
-asyncpg
+asyncpg==0.31.0
  
 # Document loaders
-pypdf
-python-pptx
+pypdf==6.19.0
+python-pptx==1.0.2
  
 # Web / URL extraction
-requests
-beautifulsoup4
-newspaper3k
+requests==2.34.2
+beautifulsoup4==4.15.0
+newspaper3k==0.2.8
  
 # Pydantic
-pydantic>=2.0
+pydantic==2.13.5
  
